@@ -1,0 +1,40 @@
+{
+    "name": "auth-node-vue",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "run": "ntl -d",
+        "dev": "nodemon app.js",
+        "start": "pm2 start app.js --name 'auth_vue'",
+        "stop": "pm2 delete 'auth_vue'",
+        "restart": "npm run stop && npm run start"
+    },
+    "ntl": {
+        "descriptions": {
+            "run": "run npm tasks list cli menu",
+            "dev": "run nodemon for development in local environment",
+            "start": "start pm2 daemon",
+            "stop": "stop pm2 daemon",
+            "restart": "restart pm2 daemon"
+        }
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.9",
+        "dotenv": "^6.0.0",
+        "express": "~4.16.0",
+        "http-errors": "~1.6.2",
+        "jade": "~1.11.0",
+        "jwt-simple": "^0.5.1",
+        "moment": "^2.22.2",
+        "morgan": "~1.9.0",
+        "mysql": "^2.16.0",
+        "mysql2": "^1.6.1",
+        "pm2": "^3.0.4",
+        "sequelize": "^4.38.0"
+    },
+    "devDependencies": {
+        "ntl": "^3.0.0"
+    }
+}
