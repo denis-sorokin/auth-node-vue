@@ -1,0 +1,22 @@
+{
+    "main": {
+        "termsOfUse": "Terms of Use.",
+        "welcome": "Welcome!"
+    },
+    "auth": {
+        "agree": "I agree to",
+        "alreadyJoined": "Already joined?",
+        "createAccount": "Create account",
+        "createNewAccount": "Create account",
+        "email": "Email",
+        "login": "Login",
+        "logout": "Logout",
+        "password": "Password",
+        "signUp": "Sign Up"
+    },
+    "nav": {
+        "home": "Home",
+        "login": "Login",
+        "about": "About"
+    }
+}

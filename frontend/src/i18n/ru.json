@@ -1,0 +1,22 @@
+{
+    "main": {
+        "termsOfUse": "Условия использования.",
+        "welcome": "Добро пожаловать!"
+    },
+    "auth": {
+        "agree": "Я согласен с",
+        "alreadyJoined": "Уже зарегистрированы?",
+        "createAccount": "Создать аккаунт",
+        "createNewAccount": "Создать аккаунт",
+        "email": "Email",
+        "login": "Логин",
+        "logout": "Выход",
+        "password": "Пароль",
+        "signUp": "Зарегистрироваться"
+    },
+    "nav": {
+        "home": "Главная",
+        "login": "Вход",
+        "about": "О нас"
+    }
+}
