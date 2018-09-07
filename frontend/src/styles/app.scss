@@ -29,6 +29,15 @@
   .toggles {
     display: flex;
     align-items: center;
+    width: 35%;
+  }
+}
+
+.error-toastr {
+  background: #ea5252e6 !important;
+  box-shadow: 0 4px 9.6px 0.4px #efff0080 !important;
+  i {
+    color: #ffe034 !important;
   }
 }
 

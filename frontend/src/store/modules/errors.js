@@ -9,6 +9,9 @@ const getters = {
 const actions = {
     SEND_ERROR ({ commit }, error) {
         commit('ERROR_TO_STORE', error)
+    },
+    ERROR_CLEAR ({ commit }) {
+        commit('ERROR_CLEAR')
     }
 };
 

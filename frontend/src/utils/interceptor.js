@@ -24,7 +24,7 @@ api.interceptors.response.use(function (response) {
     if (errorClearToken.includes(error.response.status)) {
         token.removeToken()
     }
-    const msg = error.response.data.error.message;
+    const msg = error.response.data.error;
     store.dispatch('SEND_ERROR', msg);
     return Promise.reject(error)
 });

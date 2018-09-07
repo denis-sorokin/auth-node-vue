@@ -19,5 +19,16 @@
         "login": "Login",
         "logout": "Logout",
         "about": "About"
+    },
+     "serverMsg": {
+        "errors": {
+            "0": "Unknown error",
+            "1": "Not found",
+            "2": "User not found",
+            "3": "Login or password incorrect",
+            "4": "User not found",
+            "5": "Session expired",
+            "6": "Unauthorized"
+        }
     }
 }

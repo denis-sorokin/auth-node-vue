@@ -1,11 +1,11 @@
 <template>
     <div id="nav" class="fixed-top">
         <div class="toggles ml-5">
-            <language-dropdown class="mr-3"/>
+            <language-dropdown/>
             <profile-dropdown>
                 <img src="@/assets/logo.png"/>
-                <h1 v-if="user && user.username">{{ user.username }}</h1>
             </profile-dropdown>
+            <h1 v-if="user && user.username">{{ user.username }}</h1>
         </div>
         <nav class="nav float-right">
             <router-link to="/" class="nav-link">{{ $t('nav.home') }}</router-link>
