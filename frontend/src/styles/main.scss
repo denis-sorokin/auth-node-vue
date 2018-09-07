@@ -1,6 +1,7 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
-@import "../../node_modules/font-awesome-sass/assets/stylesheets/font-awesome-sprockets";
-@import "../../node_modules/font-awesome-sass/assets/stylesheets/font-awesome";
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome-sass/assets/stylesheets/font-awesome-sprockets";
+@import "~font-awesome-sass/assets/stylesheets/font-awesome";
+@import "~flag-icon-css/css/flag-icon.css";
 
 @import "app";
 @import "profile";

@@ -17,6 +17,7 @@
     "nav": {
         "home": "Home",
         "login": "Login",
+        "logout": "Logout",
         "about": "About"
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="language-dropdown dropdown navbar-dropdown">
-        <a class="language-dropdown-button dropdown-toggle" href="#">
+        <a class="dropdown-toggle point" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="flag-icon flag-icon-large" :class="flagIconClass(currentLanguage())"></span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -11,8 +11,8 @@
                @click="setLanguage(option.code)">
                 <span class="flag-icon flag-icon-small" :class="flagIconClass(option.code)"></span>
                 <span class="dropdown-item__text ellipsis">
-          {{ option.name }}
-        </span>
+                  {{ option.name }}
+                </span>
             </a>
         </div>
     </div>

@@ -7,7 +7,7 @@ const { ERRORS } = require('../../config/constants');
 class AuthMiddleware {
     constructor() {
         this.payload = {
-            expires: moment().utc().add({ minutes: 1 }).format()
+            expires: moment().utc().add({ hours: 3 }).format()
         };
     }
 
@@ -17,7 +17,10 @@ class AuthMiddleware {
                 const userBase = await db.users.findOne({where: {email: Req.body.email}});
                 if (userBase.email) {
                     const token = jwt.encode({...this.payload, ...{user: userBase.email}}, process.env.SECRET);
-                    Res.send({token});
+                    Res.send({ user: {
+                        email: userBase.email,
+                        username: userBase.username
+                        }, token, exp: this.payload.expires });
                     return;
                 } else {
                     Res.send({error: {msg: ERRORS.AUTH.NOT_FOUND}}, 400);

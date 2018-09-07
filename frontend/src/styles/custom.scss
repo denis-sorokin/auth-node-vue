@@ -3,3 +3,17 @@
     max-width: 300px;
   }
 }
+
+.point {
+  cursor: pointer;
+}
+
+.text-grey {
+    &--light {
+        color: $gray-light
+    }
+}
+
+.border-25 {
+  border-radius: 25px;
+}
