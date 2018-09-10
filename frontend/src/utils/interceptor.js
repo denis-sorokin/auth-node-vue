@@ -21,11 +21,15 @@ api.interceptors.request.use(function (config) {
 api.interceptors.response.use(function (response) {
     return response
 }, (error) => {
-    if (errorClearToken.includes(error.response.status)) {
+    if (error.response) {
+        if (errorClearToken.includes(error.response.status)) {
+            const msg = error.response.data.error;
+            console.log(Object.keys(error))
+            store.dispatch('SEND_ERROR', msg);
+        }
         token.removeToken()
     }
-    const msg = error.response.data.error;
-    store.dispatch('SEND_ERROR', msg);
+    store.dispatch('SEND_ERROR', 0);
     return Promise.reject(error)
 });
 

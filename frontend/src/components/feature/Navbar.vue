@@ -5,7 +5,6 @@
             <profile-dropdown>
                 <img src="@/assets/logo.png"/>
             </profile-dropdown>
-            <h1 class="m-0" v-if="user && user.username">{{ user.username }}</h1>
         </div>
         <nav class="nav float-right">
             <router-link to="/" class="nav-link">{{ $t('nav.home') }}</router-link>

@@ -1,7 +1,8 @@
 {
     "main": {
         "termsOfUse": "Terms of Use.",
-        "welcome": "Welcome!"
+        "welcome": "Welcome!",
+        "register": "Registration"
     },
     "auth": {
         "agree": "I agree to",

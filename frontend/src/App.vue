@@ -20,14 +20,16 @@
       },
       watch: {
           'error': function (val) {
-              const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : val;
-              this.showToast(msg, {
-                  icon: 'warning',
-                  position: 'top-right',
-                  duration: 5000,
-                  className: 'error-toastr'
-              });
-              this.$store.dispatch('ERROR_CLEAR')
+              if (val != null) {
+                  const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : val;
+                  this.showToast(msg, {
+                      icon: 'warning',
+                      position: 'top-right',
+                      duration: 5000,
+                      className: 'error-toastr'
+                  });
+                  this.$store.dispatch('ERROR_CLEAR')
+              }
           }
       }
 

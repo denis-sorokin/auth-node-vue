@@ -12,7 +12,7 @@ const getters = {
 };
 
 const actions = {
-    AUTH_LOGIN({commit}, data) {
+    AUTH_LOGIN({ commit, dispatch }, data) {
         return new Promise((resolve, reject) => {
             api.post('auth/login', data)
                 .then(res => {
@@ -26,6 +26,7 @@ const actions = {
                     }
                 })
                 .catch(err => {
+                    dispatch('SEND_ERROR', err);
                     console.error(err);
                     reject(err)
                 })
