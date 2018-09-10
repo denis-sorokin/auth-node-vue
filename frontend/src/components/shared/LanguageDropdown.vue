@@ -1,9 +1,9 @@
 <template>
     <div class="language-dropdown dropdown navbar-dropdown">
-        <a class="dropdown-toggle point" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropdown-toggle point" id="dropdownMenuLangugage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="flag-icon flag-icon-large" :class="flagIconClass(currentLanguage())"></span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLangugage">
             <a class="dropdown-item"
                :class="{ active: option.code === currentLanguage() }"
                v-for="(option, id) in options"

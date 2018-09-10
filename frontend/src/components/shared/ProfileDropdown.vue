@@ -1,11 +1,11 @@
 <template>
     <div class="profile-dropdown dropdown navbar-dropdown">
-        <a class="dropdown-toggle" href="#">
+        <a class="dropdown-toggle" href="#" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="profile-section-avatar-container">
                   <slot></slot>
               </span>
         </a>
-        <div class="dropdown-menu last">
+        <div class="dropdown-menu last" aria-labelledby="dropdownMenuProfile">
             <div class="dropdown-menu-content">
                 <div v-for="(option, id) in options" :key="id"
                      class="dropdown-item">
