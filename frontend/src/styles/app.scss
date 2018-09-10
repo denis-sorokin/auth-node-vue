@@ -21,16 +21,20 @@
   padding-top: 5px;
   a {
     font-weight: bold;
-    color: $charcoal;
-    &:hover {
-      color: $main-color;
-    }
   }
+
   .toggles {
     display: flex;
     align-items: center;
     width: 35%;
     justify-content: space-evenly;
+  }
+}
+
+.dropdown-item {
+  cursor: pointer;
+  a {
+    text-decoration: none;
   }
 }
 

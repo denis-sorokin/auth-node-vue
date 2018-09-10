@@ -55,6 +55,7 @@
     .dropdown-menu {
       left: auto;
       margin-top: 2rem;
+      color: $light-gray;
 
       &.last {
         right: 0;
@@ -75,6 +76,7 @@
       align-items: center;
       height: 38px;
       padding: 9px 12px;
+      cursor: pointer;
 
       .dropdown-item__text {
         padding-left: 12px;
