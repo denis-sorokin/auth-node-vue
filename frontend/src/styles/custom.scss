@@ -2,6 +2,9 @@
   &-300 {
     max-width: 300px;
   }
+  &-max-content {
+    max-width: max-content;
+  }
 }
 
 .point {
@@ -16,4 +19,8 @@
 
 .border-25 {
   border-radius: 25px;
+}
+
+.text-company {
+  color: $main-color;
 }

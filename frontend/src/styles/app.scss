@@ -8,6 +8,9 @@
   color: #2c3e50;
   margin-top: 67px;
   min-height: 91vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #nav {
@@ -53,6 +56,8 @@ body {
 
 input {
   padding: 7px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   &:focus {
     outline: none;
   }
