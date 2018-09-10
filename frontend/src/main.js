@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 import App from './App.vue'
 import router from './router'
 import store from '@/store'
@@ -7,6 +8,7 @@ import toasted from './components/mixins/toasted'
 import Input from './components/shared/Input'
 
 Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
 
 Vue.mixin(toasted);
 Vue.component('v-input', Input);

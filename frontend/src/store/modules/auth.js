@@ -43,6 +43,21 @@ const actions = {
             }
         })
     },
+    SIGN_UP({ dispatch }, user) {
+        return new Promise((resolve, reject) => {
+            try {
+                api.post('auth/sign-up', user)
+                    .then(e => {
+                        dispatch('SEND_MSG', e);
+                        resolve();
+                    })
+            }
+            catch (e) {
+                console.error(e);
+                reject();
+            }
+        })
+    }
 };
 
 const mutations = {

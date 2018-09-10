@@ -15,7 +15,8 @@
       components: { Navbar },
       computed: {
           ...mapGetters({
-              error: 'getError'
+              error: 'getError',
+              message: 'getMessage'
           })
       },
       watch: {
@@ -23,12 +24,26 @@
               if (val != null) {
                   const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : val;
                   this.showToast(msg, {
-                      icon: 'warning',
+                      icon: 'fa-exclamation-triangle',
                       position: 'top-right',
                       duration: 5000,
                       className: 'error-toastr'
                   });
                   this.$store.dispatch('ERROR_CLEAR')
+              }
+          },
+          'message': function (val) {
+              if (val != null) {
+                  const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.notifications.${val.msg}`, 'serverMsg.notifications.0') : null;
+                  if (msg != null) {
+                      this.showToast(msg, {
+                          icon: 'fa-check-circle',
+                          position: 'top-right',
+                          duration: 5000,
+                          className: 'success-toastr'
+                      });
+                      this.$store.dispatch('MSG_CLEAR')
+                  }
               }
           }
       }

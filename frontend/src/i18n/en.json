@@ -29,7 +29,12 @@
             "3": "Login or password incorrect",
             "4": "User not found",
             "5": "Session expired",
-            "6": "Unauthorized"
-        }
+            "6": "Unauthorized",
+            "7": "Cannot create user",
+            "8": "Wrong password!"
+        },
+         "notifications": {
+             "0": "Success!"
+         }
     }
 }

@@ -15,23 +15,27 @@ class AuthMiddleware {
     async createToken(Req, Res) {
         if (Req.body.email && Req.body.password) {
             try {
-                const userBase = await db.users.findOne({where: {email: Req.body.email}});
-                const checkPassword = bcrypt.compareSync(Req.body.password, userBase.password);
-                console.log(checkPassword);
-
                 if (userBase.email) {
-                    const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);
-                    Res.send({ user: {
-                        email: userBase.email,
-                        username: userBase.username
-                        }, token, exp: this.payload.expires });
-                    return;
+                    const userBase = await db.users.findOne({where: { email: Req.body.email } });
+                    bcrypt.compare(Req.body.password, userBase.password, function(err, res) {
+                        if(res) {
+                            const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);
+                            Res.send({ user: {
+                                    email: userBase.email,
+                                    username: userBase.username
+                                }, token, exp: this.payload.expires }, 200);
+                            return;
+                        } else {
+                            Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }})
+                            return;
+                        }
+                    });
                 } else {
-                    Res.send({error: {msg: ERRORS.AUTH.NOT_FOUND}}, 400);
+                    Res.send({error: { msg: ERRORS.AUTH.NOT_FOUND}}, 400);
                     return;
                 }
             } catch (e) {
-                Res.send({error: {msg: ERRORS.UNKNOWN_ERROR, detail: e}}, 500);
+                Res.send({error: { msg: ERRORS.UNKNOWN_ERROR, detail: e }}, 500);
                 return;
             }
         } else {

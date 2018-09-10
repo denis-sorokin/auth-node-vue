@@ -42,11 +42,29 @@
   }
 }
 
+.toasted {
+  font-size: 3em;
+  border-radius: 25px;
+  padding-left: 1em;
+  padding-right: 1em;
+  i {
+    padding-right: 0.5em;
+  }
+}
+
 .error-toastr {
   background: #ea5252e6 !important;
   box-shadow: 0 4px 9.6px 0.4px #efff0080 !important;
   i {
-    color: #ffe034 !important;
+    color: #932621 !important;
+  }
+}
+
+.success-toastr {
+  background: rgba(104, 234, 123, 0.9) !important;
+  box-shadow: 0 4px 9.6px 0.4px rgba(5, 255, 176, 0.5) !important;
+  i {
+    color: $charcoal !important;
   }
 }
 
