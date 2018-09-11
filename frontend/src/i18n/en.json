@@ -19,7 +19,8 @@
         "home": "Home",
         "login": "Login",
         "logout": "Logout",
-        "about": "About"
+        "about": "About",
+        "signUp": "Sign-Up"
     },
      "serverMsg": {
         "errors": {

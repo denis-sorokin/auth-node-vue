@@ -42,6 +42,10 @@
                     {
                         name: 'login',
                         redirectTo: 'login'
+                    },
+                    {
+                        name: 'signUp',
+                        redirectTo: 'sign-up'
                     }
                 ]
             }

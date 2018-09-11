@@ -19,7 +19,7 @@ export default new Router({
             component: () => import('./views/Login.vue')
         },
         {
-            path: '/register',
+            path: '/sign-up',
             name: 'register',
             component: () => import('./views/Register.vue')
         },
@@ -32,6 +32,11 @@ export default new Router({
             path: '/about',
             name: 'about',
             component: () => import('./views/About.vue')
+        },
+        {
+            path: '*',
+            name: 'notFound',
+            redirect: '/'
         }
     ]
 })

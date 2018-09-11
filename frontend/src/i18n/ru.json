@@ -19,7 +19,8 @@
         "home": "Главная",
         "login": "Вход",
         "logout": "Выход",
-        "about": "О нас"
+        "about": "О нас",
+        "signUp": "Регистрация"
     },
     "serverMsg": {
         "errors": {
