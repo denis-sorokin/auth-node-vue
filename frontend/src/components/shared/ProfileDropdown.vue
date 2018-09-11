@@ -7,13 +7,10 @@
         </a>
         <div class="dropdown-menu last" aria-labelledby="dropdownMenuProfile">
             <div class="dropdown-menu-content text-center">
-                <h1 class="m-0" v-if="user && user.username">{{ user.username }}</h1>
-                <div v-for="(option, id) in (options || defaultRoutes)" :key="id"
-                     class="dropdown-item">
-                    <router-link :to="{name: option.redirectTo}">
-                        {{ $t(`nav.${option.name}`) }}
-                    </router-link>
-                </div>
+                <h1 class="m-3" v-if="user && user.username">{{ user.username }}</h1>
+                <router-link v-for="(option, id) in (options || defaultRoutes)" :to="{name: option.redirectTo}" :key="id" class="dropdown-item">
+                    {{ $t(`nav.${option.name}`) }}
+                </router-link>
             </div>
         </div>
     </div>

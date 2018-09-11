@@ -17,19 +17,25 @@ class AuthMiddleware {
             try {
                 const userBase = await db.users.findOne({where: { email: Req.body.email } });
                 if (userBase.email) {
-                    bcrypt.compare(Req.body.password, userBase.password, function(err, res) {
-                        if(res) {
-                            const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);
-                            Res.send({ user: {
-                                    email: userBase.email,
-                                    username: userBase.username
-                                }, token, exp: this.payload.expires }, 200);
-                            return;
-                        } else {
-                            Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
-                            return;
-                        }
-                    });
+                    const valid = await bcrypt.compare(Req.body.password, userBase.password);
+
+                    if(valid) {
+                        const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);
+                        const response = {
+                            user: {
+                                email: userBase.email,
+                                username: userBase.username
+                            },
+                            token,
+                            exp: this.payload.expires
+                        };
+
+                        Res.send(response, 200);
+                        return;
+                    } else {
+                        Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
+                        return;
+                    }
                 } else {
                     Res.send({error: { msg: ERRORS.AUTH.NOT_FOUND}}, 400);
                     return;
