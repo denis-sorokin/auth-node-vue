@@ -2,6 +2,7 @@ const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 const db = require('../../db/index');
+const encrypt = require('../utils/encrypt');
 const { ERRORS } = require('../../config/constants');
 
 
@@ -13,11 +14,14 @@ class AuthMiddleware {
     }
 
     async createToken(Req, Res) {
-        if (Req.body.email && Req.body.password) {
+        const { email, password } = encrypt.getClientPassword(Req.body.crypt);
+
+        if (email && password) {
             try {
-                const userBase = await db.users.findOne({where: { email: Req.body.email } });
-                if (userBase.email) {
-                    const valid = await bcrypt.compare(Req.body.password, userBase.password);
+                const userBase = await db.users.findOne({ where: { email } });
+
+                if (userBase && userBase.email) {
+                    const valid = await bcrypt.compare(password, userBase.password);
 
                     if(valid) {
                         const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);

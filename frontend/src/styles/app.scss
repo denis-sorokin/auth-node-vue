@@ -53,8 +53,9 @@
 }
 
 .error-toastr {
+  justify-content: center !important;
   background: #ea5252e6 !important;
-  box-shadow: 0 4px 9.6px 0.4px #efff0080 !important;
+  box-shadow: 0 4px 9.6px 0.4px rgba(255, 203, 9, 0.62) !important;
   i {
     color: #932621 !important;
   }

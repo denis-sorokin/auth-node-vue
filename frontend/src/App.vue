@@ -22,6 +22,7 @@
       watch: {
           'error': function (val) {
               if (val != null) {
+                  const detail = val.detail;
                   const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : null;
                   this.showToast(msg, {
                       icon: 'fa-exclamation-triangle',
@@ -29,6 +30,17 @@
                       duration: 5000,
                       className: 'error-toastr'
                   });
+
+                  if (detail) {
+                      detail.forEach(e => {
+                          this.showToast(e, {
+                              icon: 'fa-exclamation-triangle',
+                              position: 'top-right',
+                              duration: 5000,
+                              className: 'error-toastr'
+                          });
+                      })
+                  }
                   this.$store.dispatch('ERROR_CLEAR')
               }
           },

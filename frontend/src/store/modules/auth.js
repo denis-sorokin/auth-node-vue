@@ -1,5 +1,6 @@
 import api from '../../utils/interceptor'
 import _auth from '../../utils/tokenLocal'
+import encrypt from '../../utils/encrypt'
 
 const state = {
     token: '',
@@ -14,7 +15,7 @@ const getters = {
 const actions = {
     AUTH_LOGIN({ commit, dispatch }, data) {
         return new Promise((resolve, reject) => {
-            api.post('auth/login', data)
+            api.post('auth/login', { crypt: encrypt.encryptAes(data) })
                 .then(res => {
                     if (res.status === 200) {
                         const raw = res.data;
