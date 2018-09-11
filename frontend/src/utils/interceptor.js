@@ -24,12 +24,11 @@ api.interceptors.response.use(function (response) {
     if (error.response) {
         if (errorClearToken.includes(error.response.status)) {
             const msg = error.response.data.error;
-            console.log(Object.keys(error))
             store.dispatch('SEND_ERROR', msg);
         }
         token.removeToken()
     }
-    store.dispatch('SEND_ERROR', 0);
+    store.dispatch('SEND_ERROR', { msg: 0 });
     return Promise.reject(error)
 });
 

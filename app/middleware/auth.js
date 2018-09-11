@@ -16,7 +16,6 @@ class AuthMiddleware {
         if (Req.body.email && Req.body.password) {
             try {
                 if (userBase.email) {
-                    const userBase = await db.users.findOne({where: { email: Req.body.email } });
                     bcrypt.compare(Req.body.password, userBase.password, function(err, res) {
                         if(res) {
                             const token = jwt.encode({...this.payload, ...{ user: userBase.email }}, process.env.SECRET);
