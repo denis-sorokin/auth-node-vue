@@ -47,7 +47,7 @@ const actions = {
     SIGN_UP({ dispatch }, user) {
         return new Promise((resolve, reject) => {
             try {
-                api.post('auth/sign-up', user)
+                api.post('auth/sign-up', { crypt: encrypt.encryptAes(user) })
                     .then(e => {
                         dispatch('SEND_MSG', e);
                         resolve();

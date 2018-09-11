@@ -1,13 +1,16 @@
 const bcrypt = require('bcrypt');
 const db = require('../../db/index');
+const encrypt = require('../utils/encrypt');
 const { ERRORS, NOTIFICATION } = require('../../config/constants');
 
 class UserController {
     signUp(Req, Res) {
-        bcrypt.hash(Req.body.password, Number(process.env.BCRYPT_ROUNDS), async function(err, hash) {
+        const { username, password, email } = encrypt.getClientPassword(Req.body.crypt);
+
+        bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS), async function(err, hash) {
             if (hash) {
                 try {
-                    await db.users.create({ username: Req.body.username, email: Req.body.email, password: hash });
+                    await db.users.create({ username, email, password: hash });
                     Res.send({ msg: NOTIFICATION.USERS.USER_CREATED })
                 }
                 catch (e) {
