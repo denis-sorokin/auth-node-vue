@@ -23,12 +23,12 @@ api.interceptors.response.use(function (response) {
 }, (error) => {
     if (error.response) {
         if (errorClearToken.includes(error.response.status)) {
-            const msg = error.response.data.error;
-            store.dispatch('SEND_ERROR', msg);
+            token.removeToken()
         }
-        token.removeToken()
+        store.dispatch('SEND_ERROR', error.response.data.error);
+    } else {
+        store.dispatch('SEND_ERROR', { msg: 0 });
     }
-    store.dispatch('SEND_ERROR', { msg: 0 });
     return Promise.reject(error)
 });
 

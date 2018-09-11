@@ -23,7 +23,6 @@
           'error': function (val) {
               if (val != null) {
                   const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : null;
-                  console.log(val)
                   this.showToast(msg, {
                       icon: 'fa-exclamation-triangle',
                       position: 'top-right',

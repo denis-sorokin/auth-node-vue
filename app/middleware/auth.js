@@ -15,6 +15,7 @@ class AuthMiddleware {
     async createToken(Req, Res) {
         if (Req.body.email && Req.body.password) {
             try {
+                const userBase = await db.users.findOne({where: { email: Req.body.email } });
                 if (userBase.email) {
                     bcrypt.compare(Req.body.password, userBase.password, function(err, res) {
                         if(res) {
@@ -25,7 +26,7 @@ class AuthMiddleware {
                                 }, token, exp: this.payload.expires }, 200);
                             return;
                         } else {
-                            Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }})
+                            Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
                             return;
                         }
                     });

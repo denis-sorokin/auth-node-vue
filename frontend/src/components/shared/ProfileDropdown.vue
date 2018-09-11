@@ -45,7 +45,7 @@
                     },
                     {
                         name: 'signUp',
-                        redirectTo: 'sign-up'
+                        redirectTo: 'register'
                     }
                 ]
             }
