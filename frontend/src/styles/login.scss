@@ -1,5 +1,8 @@
+@import "custom";
+
 .login {
   h2 {
+    @extend .ti-0;
     margin-top: 5%;
     margin-bottom: 11%;
   }
