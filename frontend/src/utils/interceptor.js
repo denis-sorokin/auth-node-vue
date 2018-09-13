@@ -8,7 +8,7 @@ const api = axios.create({
 
 const errorClearToken = [];
 
-api.defaults.headers.common['Content-Type'] = 'application/json';
+api.defaults.headers.common['Content-Type'] = 'text/plain';
 api.interceptors.request.use(function (config) {
     if (token.getToken()) {
         config.headers['Authorization'] = token.getToken()

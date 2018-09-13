@@ -14,7 +14,7 @@ class AuthMiddleware {
     }
 
     async createToken(Req, Res) {
-        const { email, password } = encrypt.getClientPassword(Req.body.crypt);
+        const { email, password } = encrypt.getClientPassword(Req.body);
 
         if (email && password) {
             try {
