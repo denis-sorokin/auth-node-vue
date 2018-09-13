@@ -101,6 +101,10 @@
   }
 }
 
+.dropdown-menu {
+  transform: translate3d(-54px, 54px, 0px) !important;
+}
+
 .dropdown-toggle {
   padding: 0;
 
