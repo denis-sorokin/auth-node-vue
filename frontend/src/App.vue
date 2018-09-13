@@ -33,7 +33,7 @@
 
                   if (detail) {
                       detail.forEach(e => {
-                          this.showToast(e, {
+                          this.showToast(this.$t(`serverMsg.libErrors.${e}`, e), {
                               icon: 'fa-exclamation-triangle',
                               position: 'top-right',
                               duration: 5000,

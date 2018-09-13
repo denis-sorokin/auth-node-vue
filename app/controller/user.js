@@ -5,7 +5,7 @@ const { ERRORS, NOTIFICATION } = require('../../config/constants');
 
 class UserController {
     signUp(Req, Res) {
-        const { username, password, email } = encrypt.getClientPassword(Req.body.crypt);
+        const { username, password, email } = encrypt.getClientPassword(Req.body);
 
         bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS), async function(err, hash) {
             if (hash) {

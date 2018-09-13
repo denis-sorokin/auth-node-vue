@@ -1,4 +1,5 @@
 @import "_constants";
+@import "custom";
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -11,6 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 32px;
+  font-size: 1.1em;
+  text-indent: 1.5em;
+  letter-spacing: 0.05em;
 }
 
 #nav {
@@ -49,6 +54,7 @@
   padding-right: 1em;
   i {
     padding-right: 0.5em;
+    padding-left: 0.5em;
   }
 }
 
@@ -57,7 +63,7 @@
   background: #ea5252e6 !important;
   box-shadow: 0 4px 9.6px 0.4px rgba(255, 203, 9, 0.62) !important;
   i {
-    color: #932621 !important;
+    color: #fff500 !important;
   }
 }
 
@@ -67,6 +73,10 @@
   i {
     color: $charcoal !important;
   }
+}
+
+.input-group {
+  @extend .ti-0;
 }
 
 body {

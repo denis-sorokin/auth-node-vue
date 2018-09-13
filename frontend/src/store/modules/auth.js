@@ -15,7 +15,7 @@ const getters = {
 const actions = {
     AUTH_LOGIN({ commit, dispatch }, data) {
         return new Promise((resolve, reject) => {
-            api.post('auth/login', { crypt: encrypt.encryptAes(data) })
+            api.post('auth/login', encrypt.encryptAes(data))
                 .then(res => {
                     if (res.status === 200) {
                         const raw = res.data;
@@ -47,7 +47,7 @@ const actions = {
     SIGN_UP({ dispatch }, user) {
         return new Promise((resolve, reject) => {
             try {
-                api.post('auth/sign-up', { crypt: encrypt.encryptAes(user) })
+                api.post('auth/sign-up', encrypt.encryptAes(user))
                     .then(e => {
                         dispatch('SEND_MSG', e);
                         resolve();
