@@ -108,6 +108,22 @@
   }
 }
 
+.datepicker {
+  @extend .ti-0;
+  width: max-content;
+
+  div:nth-of-type {
+    width: max-content;
+  }
+  input {
+    border-radius: 25px;
+    text-align: center;
+  }
+  .vdp-datepicker__calendar {
+    margin-left: 5px;
+  }
+}
+
 body {
   font-size: $font-size-base;
 }

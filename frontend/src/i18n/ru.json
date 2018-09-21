@@ -9,8 +9,16 @@
         "football": {
             "wantGame": "Заявка на игру",
             "wantReferee": "Стать рефери",
-            "cancelGame": "Отменить заявку"
+            "cancelGame": "Отменить заявку",
+            "players": "Список игроков",
+            "writeTime": "Записатся"
         }
+    },
+    "football": {
+        "wantGame": "Записатся на игру",
+        "selectDate": "Дата",
+        "timeAvailable": "Время свободно. Вы будете записаны на {time}",
+        "timeDeny": "Время занято"
     },
     "auth": {
         "agree": "Я согласен с",

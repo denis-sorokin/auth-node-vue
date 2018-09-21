@@ -4,6 +4,9 @@ import App from './App.vue'
 import router from './router'
 import store from '@/store'
 import './i18n'
+
+import Datepicker from 'vuejs-datepicker';
+
 import toasted from './components/mixins/toasted'
 
 /* Custom components */
@@ -14,6 +17,7 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
 Vue.mixin(toasted);
+Vue.component('datepicker', Datepicker);
 Vue.component('v-input', Input);
 Vue.component('v-button', Button);
 

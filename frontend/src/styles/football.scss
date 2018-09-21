@@ -76,3 +76,10 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.football-want-game {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

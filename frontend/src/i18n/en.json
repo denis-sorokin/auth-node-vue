@@ -9,8 +9,16 @@
         "football": {
             "wantGame": "Participate on game",
             "wantReferee": "To be referee",
-            "cancelGame": "Cancel application"
+            "cancelGame": "Cancel application",
+            "players": "Show players",
+            "writeTime": "Apply"
         }
+    },
+    "football": {
+        "wantGame": "Registration for the game",
+        "selectDate": "Date",
+        "timeAvailable": "Time available. Your game on {time}",
+        "timeDeny": "Time is unavailable"
     },
     "auth": {
         "agree": "I agree to",

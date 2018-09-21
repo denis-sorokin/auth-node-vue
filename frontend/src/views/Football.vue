@@ -12,23 +12,46 @@
                 </div>
                 <div class="content">
                     <nav class="nav justify-content-around p-3">
-                        <v-button :title="$t('buttons.football.wantGame')" class="nav-item"></v-button>
-                        <v-button :title="$t('buttons.football.wantReferee')" class="nav-item"></v-button>
-                        <v-button :title="$t('buttons.football.cancelGame')" class="nav-item"></v-button>
+                        <v-button :title="$t('buttons.football.wantGame')" :action="wantGame" class="nav-item col-lg-5 my-1 btn-success"></v-button>
+                        <v-button :title="$t('buttons.football.wantReferee')" :action="wantReferee" class="nav-item col-lg-5 my-1 btn-success"></v-button>
+                        <v-button :title="$t('buttons.football.cancelGame')" :action="cancelGame" class="nav-item col-lg-5 my-1 btn-success"></v-button>
+                        <v-button :title="$t('buttons.football.players')" :action="showPlayers" class="nav-item col-lg-5 my-1 btn-success"></v-button>
                     </nav>
                 </div>
+                <wantGame v-if="activeTable === 'wantGame'"></wantGame>
                 <img class="football__ball point" src="@/assets/football_ball.png" @click="showSecret" />
             </div>
         </div>
     </div>
 </template>
 <script>
+	import { mapGetters } from 'vuex'
+    import wantGame from '../components/feature/football/wantGame'
+
     export default {
     	name: 'footballTournament',
+        components: { wantGame },
+	    computed: {
+		    ...mapGetters({
+			    activeTable: 'getFootballActiveTable'
+		    }),
+	    },
         methods: {
     		showSecret() {
 			    console.log('secret')
-            }
+            },
+	        wantGame () {
+    			this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'wantGame')
+            },
+	        wantReferee () {
+		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'wantReferee')
+	        },
+	        cancelGame () {
+		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'cancelGame')
+	        },
+	        showPlayers () {
+		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'showPlayers')
+	        }
         }
     }
 </script>

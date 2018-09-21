@@ -6,13 +6,12 @@
 </template>
 <script>
 	import Navbar from './components/feature/Navbar'
-	import {mapGetters} from 'vuex'
-	// import '../node_modules/bootstrap/js/dist'
+	import { mapGetters } from 'vuex'
 	import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min'
 
 	export default {
 		name: 'Root',
-		components: {Navbar},
+		components: { Navbar },
 		computed: {
 			...mapGetters({
 				error: 'getError',
