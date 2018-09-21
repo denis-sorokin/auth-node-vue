@@ -53,7 +53,7 @@ class UserController {
 							},
 							process.env.SECRET
 						);
-						
+
 						const response = {
 							user: {
 								email: userBase.email,

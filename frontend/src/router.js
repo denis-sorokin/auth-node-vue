@@ -29,6 +29,11 @@ export default new Router({
             component: () => import('./views/Logout.vue')
         },
         {
+            path: '/football',
+            name: 'football',
+	        component: () => import('./views/Football.vue')
+        },
+        {
             path: '/about',
             name: 'about',
             component: () => import('./views/About.vue')

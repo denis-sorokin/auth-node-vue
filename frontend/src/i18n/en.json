@@ -2,7 +2,8 @@
     "main": {
         "termsOfUse": "Terms of Use.",
         "welcome": "Welcome!",
-        "register": "Registration"
+        "register": "Registration",
+        "footballTitle": "Football tournament"
     },
     "auth": {
         "agree": "I agree to",
@@ -20,7 +21,8 @@
         "login": "Login",
         "logout": "Logout",
         "about": "About",
-        "signUp": "Sign-Up"
+        "signUp": "Sign-Up",
+        "football": "Football"
     },
      "serverMsg": {
         "errors": {

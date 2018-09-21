@@ -14,7 +14,6 @@ class AuthMiddleware {
     async checkToken(Req, Res, next) {
         if (!('authorization' in Req.headers)) {
             Res.send({ error: { msg: ERRORS.AUTH.UNAUTHORIZED } }, 400);
-            return false;
         } else {
             const info = jwt.decode(Req.headers.authorization, process.env.SECRET);
             const user = await db.users.findOne({ where: { email: info.user }});
@@ -23,7 +22,6 @@ class AuthMiddleware {
                 next();
             } else {
                 Res.send({ error: { msg: ERRORS.SESSION_EXPIRED } }, 403);
-                return false;
             }
         }
     }

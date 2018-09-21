@@ -2,7 +2,8 @@
     "main": {
         "termsOfUse": "Условия использования.",
         "welcome": "Добро пожаловать!",
-        "register": "Регистрация"
+        "register": "Регистрация",
+        "footballTitle": "Турнир по футболу"
     },
     "auth": {
         "agree": "Я согласен с",
@@ -20,7 +21,8 @@
         "login": "Вход",
         "logout": "Выход",
         "about": "О нас",
-        "signUp": "Регистрация"
+        "signUp": "Регистрация",
+        "football": "Футбол"
     },
     "serverMsg": {
         "errors": {

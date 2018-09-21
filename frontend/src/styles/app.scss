@@ -7,7 +7,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 67px;
+  margin-top: $height-nav;
   min-height: 91vh;
   display: flex;
   align-items: center;
@@ -77,6 +77,22 @@
 
 .input-group {
   @extend .ti-0;
+}
+
+.custom-title {
+  font-family: 'Pacifico', 'Permanent Marker', cursive;
+  //text-shadow: 1px 4px 6px #c1c313, 0 0 0 #ef962e, 1px 4px 6px #f00;
+  color: rgba(57, 57, 58, 0.81);
+  font-size: 2.5em;
+  text-decoration: underline;
+
+  &__wrapper {
+    background: rgba(225, 225, 225, 1.75);
+    border-radius: 35px;
+    padding: 35px;
+    border: 1px solid;
+    box-shadow: inset 1px 1px 10px 4px;
+  }
 }
 
 body {

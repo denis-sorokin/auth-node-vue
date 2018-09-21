@@ -8,7 +8,7 @@
         <div class="dropdown-menu last" aria-labelledby="dropdownMenuProfile">
             <div class="dropdown-menu-content text-center">
                 <h1 class="m-3" v-if="user && user.username">{{ user.username }}</h1>
-                <router-link v-for="(option, id) in (options || defaultRoutes)" :to="{name: option.redirectTo}" :key="id" class="dropdown-item">
+                <router-link v-for="(option, id) in defaultRoutes" :to="{name: option.redirectTo}" :key="id" class="dropdown-item">
                     {{ $t(`nav.${option.name}`) }}
                 </router-link>
             </div>
@@ -20,17 +20,16 @@
 
     export default {
         name: 'ProfileDropdown',
-        props: {
-            options: {
-                type: Array
-            }
-        },
         computed: {
             ...mapGetters({
                 user: 'getUser'
             }),
             defaultRoutes() {
                 return this.user && this.user.username? [
+	                {
+		                name: 'football',
+		                redirectTo: 'football'
+	                },
                     {
                         name: 'logout',
                         redirectTo: 'logout'
