@@ -49,6 +49,11 @@
 	        	/* get time next game from server */
 	        	return moment().format()
             }
+        },
+        methods: {
+	        writeTime() {
+		        this.$store.dispatch('FOOTBALL_REGISTER_IN_GAME', this.selectDate);
+	        }
         }
     }
 </script>

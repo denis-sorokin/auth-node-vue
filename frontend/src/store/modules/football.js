@@ -1,3 +1,6 @@
+import api from '../../utils/interceptor'
+import encrypt from "../../utils/encrypt";
+
 const state = {
 	activeTable: null
 };
@@ -9,6 +12,14 @@ const getters = {
 const actions = {
 	SET_FOOTBALL_ACTIVE_TABLE ({ commit }, table) {
 		commit('SET_ACTIVE_TABLE', table)
+	},
+	FOOTBALL_REGISTER_IN_GAME ({ dispatch }, date) {
+		api.post('football/register-in-game', encrypt.encryptAes(date))
+			.then(res => {
+				if (res.status === 200) {
+					dispatch('SEND_MSG', res)
+				}
+			})
 	}
 };
 
