@@ -7,7 +7,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: $height-nav;
+  width: 100%;
   min-height: 91vh;
   display: flex;
   align-items: center;
@@ -16,10 +16,20 @@
   font-size: 1.1em;
   text-indent: 1.5em;
   letter-spacing: 0.05em;
+  position: relative;
+  max-width: 1200px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #nav {
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
   align-items: center;
   background-image: $gradient-nav;
   justify-content: space-between;

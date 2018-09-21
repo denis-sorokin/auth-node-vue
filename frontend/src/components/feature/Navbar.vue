@@ -1,15 +1,9 @@
 <template>
-    <div id="nav" class="fixed-top">
+    <div id="nav">
         <language-dropdown class="ml-5"/>
-        <div class="toggles ml-5">
-            <nav class="nav float-right">
-                <router-link to="/" class="nav-link">{{ $t('nav.home') }}</router-link>
-                <router-link to="/about" class="nav-link">{{ $t('nav.about') }}</router-link>
-            </nav>
-            <profile-dropdown>
-                <img src="@/assets/logo.png"/>
-            </profile-dropdown>
-        </div>
+        <profile-dropdown>
+            <img id="logoProfile" src="@/assets/logo.png"/>
+        </profile-dropdown>
     </div>
 </template>
 <script>

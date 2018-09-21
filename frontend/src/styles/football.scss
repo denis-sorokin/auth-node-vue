@@ -1,9 +1,19 @@
 @import "_constants";
 
+.football {
+  position: relative;
+  width: 100%;
+  min-height: 95vh;
+  margin-top: $height-nav;
+  .col-12 {
+    height: 100vh;
+  }
+}
+
 .football-bg {
+  height: 100%;
   z-index: -1;
-  position: fixed;
-  top: $height-nav;
+  position: absolute;
   left: 0;
   right: 0;
   background: $light-gray;
@@ -14,12 +24,12 @@
     top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     height: $football-bg-top-height;
     background: url('./assets/football_bg_top.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center -130px;
-    //opacity: 0.5;
     box-shadow: inset 0px 0px 20px 14px;
 
     //&::before{
@@ -35,16 +45,30 @@
   &__body {
     z-index: -3;
     position: absolute;
-    top: $football-bg-top-height + 25vh;
+    //top: $football-bg-top-height + 25vh;
     left: 0;
     right: 0;
+    bottom: 0;
     height: 65vh;
-    background: url('./assets/football_bg_body.jpg');
+    background: url('./assets/football_bg_body_opt.png');
+    background-size: cover;
+    background-position: center;
   }
 }
 
+.football__ball {
+  position: absolute;
+  bottom: 3vh;
+  left: 17vh;
+  height: 5vw;
+  width: 5vw;
+  //background: url('./assets/football_ball.png');
+  //background-size: cover;
+  z-index: 5;
+}
+
 .football-title {
-  position: fixed;
+  position: absolute;
   top: $height-nav + 35px;
   left: 50%;
   transform: translateX(-50%);

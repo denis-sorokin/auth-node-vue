@@ -5,6 +5,7 @@ import VuexI18n from 'vuex-i18n' // load vuex i18n module
 import auth from './modules/auth'
 import errors from './modules/errors'
 import notification from './modules/notification'
+import other from './modules/other'
 
 Vue.use(Vuex);
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     modules: {
         auth,
         errors,
-        notification
+        notification,
+        other
     },
 });
 
