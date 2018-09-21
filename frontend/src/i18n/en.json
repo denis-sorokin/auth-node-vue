@@ -5,6 +5,13 @@
         "register": "Registration",
         "footballTitle": "Football tournament"
     },
+    "buttons": {
+        "football": {
+            "wantGame": "Participate on game",
+            "wantReferee": "To be referee",
+            "cancelGame": "Cancel application"
+        }
+    },
     "auth": {
         "agree": "I agree to",
         "alreadyJoined": "Already joined?",

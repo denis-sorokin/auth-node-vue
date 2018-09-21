@@ -8,6 +8,9 @@
   .col-12 {
     height: 100vh;
   }
+  .content {
+    margin-top: $football-bg-top-height;
+  }
 }
 
 .football-bg {
@@ -16,7 +19,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  background: $light-gray;
+  background-color: #ededed;
 
   &__top {
     z-index: -3;

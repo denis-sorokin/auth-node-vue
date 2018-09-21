@@ -5,6 +5,13 @@
         "register": "Регистрация",
         "footballTitle": "Турнир по футболу"
     },
+    "buttons": {
+        "football": {
+            "wantGame": "Заявка на игру",
+            "wantReferee": "Стать рефери",
+            "cancelGame": "Отменить заявку"
+        }
+    },
     "auth": {
         "agree": "Я согласен с",
         "alreadyJoined": "Уже зарегистрированы?",
