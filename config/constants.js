@@ -1,10 +1,20 @@
 module.exports = {
-    ROLES: [
-        'ADMIN', 'MODER', 'USER'
-    ],
-    PERMISSIONS: [
-        'deleteUsers', 'editUsers', 'read'
-    ],
+    ROLE: {
+        admin: (permissions) => {
+	        const allUsers = Object.keys(permissions.USER).reduce((acc, el) => {
+	            return acc + permissions.USER[el]
+            }, 0);
+            return allUsers
+        }
+    },
+    PERMISSIONS: {
+        USER: {
+	        CAN_CREATE: 1 << 3,
+	        CAN_READ: 1 << 2,
+	        CAN_UPDATE: 1 << 1,
+	        CAN_DELETE: 1 << 0
+        }
+    },
     ERRORS: {
         UNKNOWN_ERROR: 0,
         NOT_FOUND: 1,

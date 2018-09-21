@@ -3,10 +3,10 @@ const router = express.Router();
 const AuthMiddleware = require('../app/middleware/auth');
 const UserController = require('../app/controller/user');
 
-/* GET users list. */
+/* USERS */
 router.post('/login',
     async function(Req, Res) {
-        AuthMiddleware.createToken(Req, Res);
+	    UserController.createToken(Req, Res);
     }
 );
 
@@ -16,9 +16,11 @@ router.post('/sign-up',
     }
 );
 
+/* AUTH */
 router.get('/check',
     async function(Req, Res, next) {
-        AuthMiddleware.checkToken(Req, Res, next);
+	    AuthMiddleware.checkToken(Req, Res, next);
+	    AuthMiddleware.admin(Req, Res, next);
     }
 );
 
