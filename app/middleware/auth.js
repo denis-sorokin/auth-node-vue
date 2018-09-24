@@ -1,6 +1,6 @@
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const db = require('../../db/index');
+const db = require('../../db');
 const { ERRORS } = require('../../config/constants');
 
 

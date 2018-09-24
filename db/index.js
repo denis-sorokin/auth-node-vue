@@ -1,19 +1,20 @@
 const db = {
-	gamePlayers: require('./GamePlayers'),
 	users: require('./User'),
-	games: require('./Game')
+	games: require('./Game'),
+	gamePlayers: require('./GamePlayers')
 };
 
-Object.keys(db).forEach(table => {
-	if ('associate' in db[table]) {
-		db[table].associate(db);
-	}
-	db[table].sync({ force: true }).then(() => {
-		if (table === 'users') {
-			db.users.create({username: 'test', password: 12345, email: "email@mail.com"});
+Promise.all(
+	Object.keys(db).map(async table => {
+		if (typeof db[table].associations === 'function') {
+			await db[table].associations(db);
 		}
-	});
+		return table
+	})
+).then( tables => {
+	tables.forEach(async table => {
+		await db[table].sync();
+	})
 });
-
 
 module.exports = db;

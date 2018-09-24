@@ -47,5 +47,8 @@ module.exports = {
         USERS: {
             USER_CREATED: 0
         }
-    }
+    },
+	FOOTBALL: {
+    	TEAM: ['YELLOW', 'WHITE']
+	}
 };

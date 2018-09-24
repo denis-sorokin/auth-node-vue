@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 
 const { ROLE, PERMISSIONS } = require('../config/constants');
 
-const User = sequelize.define('user', {
+let User = sequelize.define('user', {
     username: {
         type: Sequelize.STRING,
         unique: true
@@ -24,9 +24,16 @@ const User = sequelize.define('user', {
 		defaultValue: ROLE.reader(PERMISSIONS)
 	}
 }, {
-    freezeTableName: true // Model tableName will be the same as the model name
+	timestamps: true,
+	freezeTableName: true
 });
 
-// User.sync({ force: true });
+User.associations = async function(models) {
+	await User.belongsToMany(models.games, {
+		through: models.gamePlayers, foreignKey: 'userId'
+	});
+};
+
+// User.sync();
 
 module.exports = User;

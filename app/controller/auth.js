@@ -5,7 +5,7 @@ const db = require('../../db/index');
 const encrypt = require('../utils/encrypt');
 const { ERRORS, NOTIFICATION } = require('../../config/constants');
 
-class UserController {
+class AuthController {
 	constructor() {
 		this.payload = {
 			expires: moment().utc().add({ hours: 3 }).format()
@@ -79,4 +79,4 @@ class UserController {
 	};
 }
 
-module.exports = new UserController();
+module.exports = new AuthController();
