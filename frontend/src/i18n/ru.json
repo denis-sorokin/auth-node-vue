@@ -16,8 +16,12 @@
     },
     "football": {
         "wantGame": "Записатся на игру",
+        "wantReferee": "Стать рефери",
+        "cancelApplication": "Отмена заявки на игру",
+        "playersList": "Список игроков",
+        "cancelApp": "Отмена записи",
         "selectDate": "Дата",
-        "timeAvailable": "Время свободно. Вы будете записаны на {time}",
+        "timeAvailable": "Время свободно на {time}",
         "timeDeny": "Время занято"
     },
     "auth": {

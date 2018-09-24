@@ -16,8 +16,12 @@
     },
     "football": {
         "wantGame": "Registration for the game",
+        "wantReferee": "Registration for the referee",
+        "cancelApplication": "Cancel application",
+        "playersList": "Players list",
+        "cancelApp": "Cancel application",
         "selectDate": "Date",
-        "timeAvailable": "Time available. Your game on {time}",
+        "timeAvailable": "Time available on {time}",
         "timeDeny": "Time is unavailable"
     },
     "auth": {

@@ -18,7 +18,10 @@
                         <v-button :title="$t('buttons.football.players')" :action="showPlayers" class="nav-item col-lg-5 my-1 btn-success"></v-button>
                     </nav>
                 </div>
-                <wantGame v-if="activeTable === 'wantGame'"></wantGame>
+                <WantGame v-if="activeTable === 'wantGame'" />
+                <WantReferee v-if="activeTable === 'wantReferee'" />
+                <CancelApplication v-if="activeTable === 'cancelApplication'" />
+                <PlayersList v-if="activeTable === 'playersList'" />
                 <img class="football__ball point" src="@/assets/football_ball.png" @click="showSecret" />
             </div>
         </div>
@@ -26,11 +29,14 @@
 </template>
 <script>
 	import { mapGetters } from 'vuex'
-    import wantGame from '../components/feature/football/wantGame'
+	import WantGame from '../components/feature/football/WantGame'
+	import WantReferee from '../components/feature/football/WantReferee'
+	import CancelApplication from '../components/feature/football/CancelApplication'
+	import PlayersList from '../components/feature/football/PlayersList'
 
     export default {
     	name: 'footballTournament',
-        components: { wantGame },
+        components: { WantGame, WantReferee, CancelApplication, PlayersList },
 	    computed: {
 		    ...mapGetters({
 			    activeTable: 'getFootballActiveTable'
@@ -47,10 +53,10 @@
 		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'wantReferee')
 	        },
 	        cancelGame () {
-		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'cancelGame')
+		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'cancelApplication')
 	        },
 	        showPlayers () {
-		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'showPlayers')
+		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'playersList')
 	        }
         }
     }
