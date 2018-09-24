@@ -1,10 +1,22 @@
 module.exports = {
     ROLE: {
         admin: (permissions) => {
-	        const allUsers = Object.keys(permissions.USER).reduce((acc, el) => {
-	            return acc + permissions.USER[el]
-            }, 0);
-            return allUsers
+	        return Object.keys(permissions).reduce((acc, e) => {
+		        Object.keys(permissions[e]).forEach(perm => {
+			        acc += permissions[e][perm];
+		        });
+		        return acc;
+	        }, 0);
+        },
+        reader: (permissions) => {
+	        return Object.keys(permissions).reduce((acc, e) => {
+		        Object.keys(permissions[e]).forEach(perm => {
+			        if (perm.indexOf('READ') !== -1) {
+				        acc += permissions[e][perm];
+			        }
+		        });
+		        return acc;
+	        }, 0);
         }
     },
     PERMISSIONS: {
