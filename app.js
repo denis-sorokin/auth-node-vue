@@ -1,9 +1,13 @@
 require('dotenv').config({path: './.env'});
+const chalk = require('chalk');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+// const database = require('./config/db');
+// const models = require('./db');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -37,8 +41,11 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 
 const port = process.env.PORT || 3000;
+
 app.listen(port, function () {
-    console.log(`=======\nApp running on ${port}\nhttp://localhost:${port}\n=======`);
+    console.log(
+	    chalk.blue.bgCyan(`App running on ${port} port.\nhttp://localhost:${port}`)
+    );
 });
 
 module.exports = app;

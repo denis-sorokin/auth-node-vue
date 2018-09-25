@@ -22,6 +22,7 @@
         "axios": "^0.18.0",
         "bcrypt": "^3.0.0",
         "body-parser": "^1.18.3",
+        "chalk": "^2.4.1",
         "cookie-parser": "~1.4.3",
         "crypto-js": "^3.1.9-1",
         "debug": "~2.6.9",
@@ -31,11 +32,11 @@
         "jade": "~1.11.0",
         "jwt-simple": "^0.5.1",
         "moment": "^2.22.2",
+        "mongoose": "^5.2.17",
         "morgan": "~1.9.0",
         "mysql": "^2.16.0",
         "mysql2": "^1.6.1",
-        "pm2": "^3.0.4",
-        "sequelize": "^4.38.0"
+        "pm2": "^3.0.4"
     },
     "devDependencies": {
         "ntl": "^3.0.0"

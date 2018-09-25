@@ -49,6 +49,6 @@ module.exports = {
         }
     },
 	FOOTBALL: {
-    	TEAM: ['YELLOW', 'WHITE']
+    	TEAM: ['YELLOW', 'WHITE', 'WAITING']
 	}
 };

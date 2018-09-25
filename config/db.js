@@ -1,11 +1,36 @@
-const Sequelize = require('sequelize');
+const mongoose = require('mongoose');
+const chalk = require('chalk');
 
-module.exports = new Sequelize(
-    process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: process.env.DB_DIALECT,
-        define: {
-            timestamps: false,
-        }
-    });
+const urlDatabase = `${process.env.DB_DIALECT}://${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const options = {
+	server: {
+		socketOptions: { keepAlive: 1 },
+		auto_reconnect: true
+	}
+};
+
+mongoose.connect(urlDatabase, options);
+
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+
+db.once('open' ,() => {
+	console.log(
+		chalk.green('Mongo database SUCCESSFUL connected!')
+	);
+});
+db.on('error', function(error) {
+	console.error(
+		chalk.red('Mongo database connection ERROR: ' + error)
+	);
+	mongoose.disconnect();
+});
+
+db.on('close', function() {
+	console.log(
+		chalk.red('Mongo database connection CLOSED.')
+	);
+	mongoose.connect(urlDatabase, options);
+});
+
+module.exports = db;

@@ -7,11 +7,11 @@ const AuthMiddleware = require('../app/middleware/auth');
 router.get('/',
     // AuthMiddleware.checkToken.bind(AuthMiddleware),
     async function(Req, Res) {
-        await db.users.findAll({include: [{ all: true }]}).then(users => {
+        await db.users.findAll().then(users => {
             Res.send(users, 200);
         })
-        .catch(e => {
-            Res.send(e, 500)
+        .catch(Error => {
+            Res.send(Error, 500)
         })
     }
 );

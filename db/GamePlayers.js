@@ -1,26 +1,19 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/db');
+const mongoose = require('mongoose');
 
-const { FOOTBALL } = require('../config/constants');
-
-const GamePlayers = sequelize.define('game_players', {
+const gamePlayerSchema = new mongoose.Schema({
 	gameId: {
-		type: Sequelize.INTEGER
+		type: String
 	},
 	userId: {
-		type: Sequelize.INTEGER
+		type: String
 	},
 	score: {
-		type: Sequelize.TINYINT
+		type: Number,
+		default: 0
 	},
 	team: {
-		type: Sequelize.ENUM(FOOTBALL.TEAM)
+		type: String // ENUM FOOTBALL.TEAM from constants
 	}
-}, {
-	timestamps: true,
-	freezeTableName: true
 });
 
-// GamePlayers.sync({ force: true });
-
-module.exports = GamePlayers;
+module.exports = mongoose.model('Game_Player', gamePlayerSchema);
