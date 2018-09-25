@@ -34,7 +34,7 @@ const gameBase = {
 };
 const gamePlayersBase = (user) => {
 	return {
-		userId: user._id,
+		user: user._id,
 		team: FOOTBALL.TEAM[2]
 	};
 };
@@ -89,12 +89,11 @@ module.exports = async function (models) {
 		game.save().then(async e => {
 			console.log(chalk.bgGreen(`Created ${ e._id } game.`));
 
-			const waitingUsers = await models.gamePlayers.find({ gameId: null }).exec();
+			const waitingUsers = await models.gamePlayers.find({ game: null }).populate('users').exec();
 
-			console.log(waitingUsers);
 			waitingUsers.forEach((gamePlayer, index) => {
 				gamePlayer.updateOne({
-					gameId: gamePlayer._id,
+					game: gamePlayer._id,
 					team: 1 % index === 1? FOOTBALL.TEAM[0] : FOOTBALL.TEAM[1]
 				}, err => {
 					if (err) {
