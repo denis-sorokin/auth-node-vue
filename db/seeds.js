@@ -40,15 +40,15 @@ const gamePlayersBase = (user) => {
 };
 
 module.exports = async function (models) {
-	await connection.dropDatabase();
-	console.log(
-		chalk.red('Database droped.')
-	);
-	await connection.useDb(process.env.DB_NAME);
-
-	console.log(
-		chalk.bgGreen(`Database ${process.env.DB_NAME} created!`)
-	);
+	// await connection.dropDatabase();
+	// console.log(
+	// 	chalk.red('Database droped.')
+	// );
+	// await connection.useDb(process.env.DB_NAME);
+	//
+	// console.log(
+	// 	chalk.bgGreen(`Database ${process.env.DB_NAME} created!`)
+	// );
 
 	/* Create users */
 	await Promise.all(userBase.map(async el => {
@@ -106,9 +106,10 @@ module.exports = async function (models) {
 			})
 			);
 
-			models.gamePlayers.find().populate(['user', 'game']).exec((err, docs) => {
-				console.log(err, docs);
-			})
+			/* example get game players with join user and game */
+			// models.gamePlayers.find().populate(['user', 'game']).exec((err, docs) => {
+			// 	console.log(err, docs);
+			// })
 		})
 		.catch(err => {
 			console.log(
