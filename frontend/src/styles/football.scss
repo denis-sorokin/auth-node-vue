@@ -20,6 +20,9 @@
   left: 0;
   right: 0;
   background-color: #ededed;
+  &:before {
+    content: '';
+  }
 
   &__top {
     z-index: -3;
@@ -72,9 +75,10 @@
 
 .football-title {
   position: absolute;
-  top: $height-nav + 35px;
   left: 50%;
+  top: 3vh;
   transform: translateX(-50%);
+  max-height: 30vh;
 }
 
 .football-want-game {
