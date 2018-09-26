@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const gamePlayerSchema = new mongoose.Schema({
 	game: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Game'
+		ref: 'game'
 	},
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
+		ref: 'user'
 	},
 	score: {
 		type: Number,
@@ -18,4 +18,4 @@ const gamePlayerSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Game_Player', gamePlayerSchema);
+module.exports = gamePlayerSchema;

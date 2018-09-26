@@ -16,7 +16,7 @@ const db = mongoose.connection;
 
 db.once('open' ,() => {
 	console.log(
-		chalk.green('Mongo database SUCCESSFUL connected!')
+		chalk.green(`Mongo database ${process.env.DB_NAME} SUCCESSFUL connected!`)
 	);
 });
 db.on('error', function(error) {

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const { ROLE, PERMISSIONS } = require('../config/constants');
 
+const footballGamesSchema = require('../db/GamePlayers');
+
 const userSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -24,4 +26,4 @@ const userSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = userSchema;

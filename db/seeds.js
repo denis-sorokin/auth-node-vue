@@ -44,10 +44,10 @@ module.exports = async function (models) {
 	console.log(
 		chalk.red('Database droped.')
 	);
-	await connection.useDb('auth_node_vue');
+	await connection.useDb(process.env.DB_NAME);
 
 	console.log(
-		chalk.bgGreen('Database created!')
+		chalk.bgGreen(`Database ${process.env.DB_NAME} created!`)
 	);
 
 	/* Create users */
@@ -86,14 +86,14 @@ module.exports = async function (models) {
 	if (countWaitingUsers === 4) {
 		const game = models.games(gameBase);
 
-		game.save().then(async e => {
-			console.log(chalk.bgGreen(`Created ${ e._id } game.`));
+		game.save().then(async gameThen => {
+			console.log(chalk.bgGreen(`Created ${ gameThen._id } game.`));
 
-			const waitingUsers = await models.gamePlayers.find({ game: null }).populate('users').exec();
+			const waitingUsers = await models.gamePlayers.find({ game: null }).exec();
 
-			waitingUsers.forEach((gamePlayer, index) => {
-				gamePlayer.updateOne({
-					game: gamePlayer._id,
+			await Promise.all(waitingUsers.map(async (gamePlayer, index) => {
+				await gamePlayer.updateOne({
+					game: gameThen._id,
 					team: 1 % index === 1? FOOTBALL.TEAM[0] : FOOTBALL.TEAM[1]
 				}, err => {
 					if (err) {
@@ -103,7 +103,12 @@ module.exports = async function (models) {
 					}
 					console.log(chalk.bgGreen(`User ${ gamePlayer._id } register on created game and set team.`));
 				})
-			});
+			})
+			);
+
+			models.gamePlayers.find().populate(['user', 'game']).exec((err, docs) => {
+				console.log(err, docs);
+			})
 		})
 		.catch(err => {
 			console.log(
