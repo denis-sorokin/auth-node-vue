@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const gameSchema = new mongoose.Schema({
-	plannedDate: {
+	planned_date: {
 		type: Date,
 	}
 });

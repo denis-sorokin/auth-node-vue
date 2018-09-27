@@ -120,7 +120,20 @@
     text-align: center;
   }
   .vdp-datepicker__calendar {
-    margin-left: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    //&:after {
+    //  position: fixed;
+    //  content: '';
+    //  filter: blur(5px);
+    //  left: 0;
+    //  top: 0;
+    //  right: 0;
+    //  bottom: 0;
+    //  background-color: rgba(0, 0, 0, 0.5);
+    //}
   }
 }
 

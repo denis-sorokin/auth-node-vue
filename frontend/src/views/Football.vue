@@ -1,7 +1,7 @@
 <template>
     <div class="football">
         <div class="row">
-            <div class="col-12">
+            <div class="col">
                 <div class="custom-title__wrapper football-title">
                     <h1 class="custom-title ti-0">{{ $t('main.footballTitle') }}</h1>
                 </div>

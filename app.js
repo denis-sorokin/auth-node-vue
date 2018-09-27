@@ -6,12 +6,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-// const database = require('./config/db');
+require('./config/db');
 // const models = require('./db');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
+const footballRouter = require('./routes/football');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(require('morgan')('combined'));
 app.use('/api', indexRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/football', footballRouter);
 
 const port = process.env.PORT || 3000;
 

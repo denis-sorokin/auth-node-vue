@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const { ROLE, PERMISSIONS } = require('../config/constants');
 
-const footballGamesSchema = require('../db/GamePlayers');
-
 const userSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -20,6 +18,10 @@ const userSchema = new mongoose.Schema({
 		type: Number,
 		default: 100
 	},
+	games: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'game_player'
+	}],
 	permission: {
 		type: Number,
 		default: ROLE.reader(PERMISSIONS)

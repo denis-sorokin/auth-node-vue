@@ -5,8 +5,8 @@
   width: 100%;
   min-height: 95vh;
   margin-top: $height-nav;
-  .col-12 {
-    height: 100vh;
+  .row {
+    min-height: 100vh;
   }
   .content {
     margin-top: $football-bg-top-height;

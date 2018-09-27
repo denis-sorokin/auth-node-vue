@@ -41,6 +41,9 @@ module.exports = {
             CANNOT_CREATE_USER: 7,
             CANNOT_GET_USERS: 9
         },
+	    FOOTBALL: {
+        	NOT_FOUND_PLAYER: 10
+	    },
         SESSION_EXPIRED: 5
     },
     NOTIFICATION: {

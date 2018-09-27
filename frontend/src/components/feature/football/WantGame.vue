@@ -7,6 +7,8 @@
                     name="selectGameDate"
                     :disabled-dates="disabledDates"
                     :placeholder="$t('football.selectDate')"
+                    @opened="toggleDatepickerStatus(true)"
+                    @closed="toggleDatepickerStatus(false)"
         >
         </datepicker>
         <span class="ti-0 my-3" :class="checkDate? 'text-success' : 'text-danger'">
@@ -53,7 +55,10 @@
         methods: {
 	        writeTime() {
 		        this.$store.dispatch('FOOTBALL_REGISTER_IN_GAME', this.selectDate);
-	        }
+	        },
+	        toggleDatepickerStatus(status) {
+	        	console.log(status)
+            }
         }
     }
 </script>

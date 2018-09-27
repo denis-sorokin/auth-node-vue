@@ -6,7 +6,67 @@ const { FOOTBALL } = require('../config/constants');
 const userBase = [
 	{
 		username: 'Test',
-		email: 'test@gmail.com',
+		email: 'tet@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'EbayEbay',
+		email: 'ttt@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Ebal',
+		email: 'test23@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Hualdo',
+		email: 'tst55@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Ronaldo',
+		email: 'tsss55@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Macumba',
+		email: 'waa@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Pumba',
+		email: 'toaas@gmail.com',
+		password: 13245,
+		score: 111
+	},
+	{
+		username: 'Jenifer',
+		email: 'test23@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Wilson',
+		email: 'test55@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Flanders',
+		email: 'tes55@gmail.com',
+		password: 12345,
+		score: 110
+	},
+	{
+		username: 'Homer',
+		email: 'wat@gmail.com',
 		password: 12345,
 		score: 110
 	},
@@ -30,7 +90,7 @@ const userBase = [
 	}
 ];
 const gameBase = {
-	plannedDate: new Date()
+	planned_date: new Date()
 };
 const gamePlayersBase = (user) => {
 	return {
@@ -40,23 +100,25 @@ const gamePlayersBase = (user) => {
 };
 
 module.exports = async function (models) {
-	// await connection.dropDatabase();
-	// console.log(
-	// 	chalk.red('Database droped.')
-	// );
-	// await connection.useDb(process.env.DB_NAME);
-	//
-	// console.log(
-	// 	chalk.bgGreen(`Database ${process.env.DB_NAME} created!`)
-	// );
+	await connection.dropDatabase();
+	console.log(
+		chalk.red('Database droped.')
+	);
+	await connection.useDb(process.env.DB_NAME);
+
+	console.log(
+		chalk.bgGreen(`Database ${process.env.DB_NAME} created!`)
+	);
 
 	/* Create users */
 	await Promise.all(userBase.map(async el => {
 		const user = models.users(el);
 
-		await user.save().then(e => {
+		await user.save()
+		.then(e => {
 			console.log(chalk.bgGreen(`Created ${ e.username } user.`));
-		}).catch(err => {
+		})
+		.catch(err => {
 			console.log(
 				chalk.bgRed('Cannot save USER.\n', err)
 			);
@@ -64,8 +126,11 @@ module.exports = async function (models) {
 
 		/* Subscribe to the game */
 		const gamePlayers = models.gamePlayers(gamePlayersBase(user));
-		await gamePlayers.save().then(e => {
-			console.log(chalk.bgGreen(`Register user ${ e._id } in GAME_PLAYERS.`));
+		console.log('before save model gamePlayers',gamePlayers);
+
+		await gamePlayers.save()
+		.then(e => {
+			console.log(chalk.bgGreen(`Register user ${el._id} in GAME_PLAYERS ${e._id}.`));
 		})
 		.catch(err => {
 			console.log(
@@ -74,6 +139,7 @@ module.exports = async function (models) {
 		});
 	})
 	);
+	console.log('resolve promise before all promises')
 
 	/* Create game */
 	let countWaitingUsers = 0;

@@ -2,7 +2,8 @@ import api from '../../utils/interceptor'
 import encrypt from "../../utils/encrypt";
 
 const state = {
-	activeTable: null
+	activeTable: '',
+	players: []
 };
 
 const getters = {
@@ -10,7 +11,16 @@ const getters = {
 };
 
 const actions = {
-	SET_FOOTBALL_ACTIVE_TABLE ({ commit }, table) {
+	GET_FOOTBALL_USERS ({ commit }) {
+		api.get('football/players')
+			.then(res => {
+				if (res.status === 200) {
+					commit('SAVE_PLAYERS', res.data)
+				}
+			})
+	},
+	SET_FOOTBALL_ACTIVE_TABLE ({ commit, dispatch }, table) {
+		dispatch('GET_FOOTBALL_USERS');
 		commit('SET_ACTIVE_TABLE', table)
 	},
 	FOOTBALL_REGISTER_IN_GAME ({ dispatch }, date) {
@@ -26,6 +36,9 @@ const actions = {
 const mutations = {
 	SET_ACTIVE_TABLE (state, table) {
 		state.activeTable = table
+	},
+	SAVE_PLAYERS (state, data) {
+		state.players = data
 	}
 };
 

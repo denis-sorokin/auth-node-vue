@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 const jwt = require('jwt-simple');
-const db = require('../../db/index');
+const db = require('../../db');
 const encrypt = require('../utils/encrypt');
 const { ERRORS, NOTIFICATION } = require('../../config/constants');
 
@@ -22,10 +22,6 @@ class AuthController {
                     Res.send({ msg: NOTIFICATION.USERS.USER_CREATED })
                 }
                 catch (e) {
-                    // let messages = e.errors.reduce((ac, val) => {
-                    //     return ac.concat(val.message);
-                    // }, []);
-
                     Res.send({ error: { msg: ERRORS.USERS.CANNOT_CREATE_USER, detail: e.errmsg } }, 400)
                 }
             }
@@ -41,34 +37,36 @@ class AuthController {
 
 		if (email && password) {
 			try {
-				await db.users.findOne({ email }).exec(async (err, result) => {
-					if (result && result.email) {
-						const valid = await bcrypt.compare(password, result.password);
+				console.log('WTF')
+				const user = await db.users.findOne({ email }).exec();
+				console.log(user)
 
-						if(valid) {
-							const token = jwt.encode({
-									...this.payload,
-									...{ user: result.email }
-								},
-								process.env.SECRET
-							);
+				if (user && user.email) {
+					const valid = await bcrypt.compare(password, user.password);
 
-							const response = {
-								user: {
-									username: result.username
-								},
-								token,
-								// exp: this.payload.expires
-							};
+					if(valid) {
+						const token = jwt.encode({
+								...this.payload,
+								...{ user: user.email }
+							},
+							process.env.SECRET
+						);
 
-							Res.send(response, 200);
-						} else {
-							Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
-						}
+						const response = {
+							user: {
+								username: user.username
+							},
+							token,
+							// exp: this.payload.expires
+						};
+
+						Res.send(response, 200);
 					} else {
-						Res.send({error: { msg: ERRORS.AUTH.NOT_FOUND}}, 400);
+						Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
 					}
-				});
+				} else {
+					Res.send({error: { msg: ERRORS.AUTH.NOT_FOUND}}, 400);
+				}
 			} catch (e) {
 				Res.send({error: { msg: ERRORS.UNKNOWN_ERROR, detail: e }}, 500);
 			}
