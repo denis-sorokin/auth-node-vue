@@ -111,8 +111,8 @@ module.exports = async function (models) {
 	);
 
 	/* Create users */
-	await Promise.all(userBase.map(async el => {
-		const user = models.users(el);
+	Promise.all(userBase.map(async el => {
+		const user = await models.users(el);
 
 		await user.save()
 		.then(e => {
@@ -126,11 +126,11 @@ module.exports = async function (models) {
 
 		/* Subscribe to the game */
 		const gamePlayers = models.gamePlayers(gamePlayersBase(user));
-		console.log('before save model gamePlayers',gamePlayers);
+		// console.log('before save model gamePlayers',gamePlayers);
 
 		await gamePlayers.save()
 		.then(e => {
-			console.log(chalk.bgGreen(`Register user ${el._id} in GAME_PLAYERS ${e._id}.`));
+			console.log(chalk.bgGreen(`Register user ${ el._id } in GAME_PLAYERS ${ e._id }.`));
 		})
 		.catch(err => {
 			console.log(
