@@ -111,7 +111,7 @@ module.exports = async function (models) {
 	);
 
 	/* Create users */
-	Promise.all(userBase.map(async el => {
+	await Promise.all(userBase.map(async el => {
 		const user = await models.users(el);
 
 		await user.save()
@@ -126,20 +126,25 @@ module.exports = async function (models) {
 
 		/* Subscribe to the game */
 		const gamePlayers = models.gamePlayers(gamePlayersBase(user));
-		// console.log('before save model gamePlayers',gamePlayers);
 
-		await gamePlayers.save()
-		.then(e => {
-			console.log(chalk.bgGreen(`Register user ${ el._id } in GAME_PLAYERS ${ e._id }.`));
-		})
-		.catch(err => {
-			console.log(
-				chalk.bgRed('Cannot save GAME_PLAYERS.\n', err)
+		try {
+			await gamePlayers.save()
+				.then(e => {
+					console.log(chalk.bgGreen(`Register user ${ user._id } in GAME_PLAYERS ${ e._id }.`));
+				})
+				.catch(err => {
+					console.log(
+						chalk.bgRed('Cannot save GAME_PLAYERS.\n', err)
+					);
+				});
+		} catch (err) {
+			console.error(
+				chalk.bgRed(err)
 			);
-		});
+		}
+
 	})
 	);
-	console.log('resolve promise before all promises')
 
 	/* Create game */
 	let countWaitingUsers = 0;
@@ -149,38 +154,44 @@ module.exports = async function (models) {
 	});
 
 	/* Four players for game */
-	if (countWaitingUsers === 4) {
-		const game = models.games(gameBase);
+	if (((countWaitingUsers / 4) % 4) % 1 === 0) {
+		try {
+			const game = models.games(gameBase);
 
-		game.save().then(async gameThen => {
-			console.log(chalk.bgGreen(`Created ${ gameThen._id } game.`));
+			game.save().then(async gameThen => {
+				console.log(chalk.bgGreen(`Created ${ gameThen._id } game.`));
 
-			const waitingUsers = await models.gamePlayers.find({ game: null }).exec();
+				const waitingUsers = await models.gamePlayers
+					.find({ game: null })
+					.sort({score: 'asc'})
+					.exec();
 
-			await Promise.all(waitingUsers.map(async (gamePlayer, index) => {
-				await gamePlayer.updateOne({
-					game: gameThen._id,
-					team: 1 % index === 1? FOOTBALL.TEAM[0] : FOOTBALL.TEAM[1]
-				}, err => {
-					if (err) {
-						console.log(
-							chalk.bgRed('Error when update waitingUsers in gamePlayers.\n', err)
-						);
-					}
-					console.log(chalk.bgGreen(`User ${ gamePlayer._id } register on created game and set team.`));
-				})
+				await Promise.all(waitingUsers.map(async (gamePlayer, index) => {
+					gamePlayer.updateOne({
+						game: gameThen._id,
+						team: 1 % index === 1? FOOTBALL.TEAM[0] : FOOTBALL.TEAM[1]
+					}, err => {
+						if (err) {
+							console.log(
+								chalk.bgRed('Error when update waitingUsers in gamePlayers.\n', err)
+							);
+						}
+						console.log(chalk.bgGreen(`User ${ gamePlayer._id } register on created game and set team.`));
+					})
+				}));
+
+				/* example get game players with join user and game */
+				// models.gamePlayers.find().populate(['user', 'game']).exec((err, docs) => {
+				// 	console.log(err, docs);
+				// })
 			})
-			);
-
-			/* example get game players with join user and game */
-			// models.gamePlayers.find().populate(['user', 'game']).exec((err, docs) => {
-			// 	console.log(err, docs);
-			// })
-		})
-		.catch(err => {
-			console.log(
-				chalk.bgRed('Cannot save GAME.\n', err)
-			);
-		})
+				.catch(err => {
+					console.log(
+						chalk.bgRed('Cannot save GAME.\n', err)
+					);
+				})
+		} catch (err) {
+			console.error(err)
+		}
 	}
 };

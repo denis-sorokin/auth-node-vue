@@ -42,7 +42,8 @@ module.exports = {
             CANNOT_GET_USERS: 9
         },
 	    FOOTBALL: {
-        	NOT_FOUND_PLAYER: 10
+        	NOT_FOUND_PLAYER: 10,
+		    CANNOT_GET_PLAYERS: 11
 	    },
         SESSION_EXPIRED: 5
     },

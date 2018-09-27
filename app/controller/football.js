@@ -6,8 +6,12 @@ class FootballController {
 
 	async getUsers(Req, Res) {
 		try {
-			const users = await models.users.find().populate(['game']).exec();
-			Res.send(users);
+			await models.users.find().populate('games').exec((err, users) => {
+				if (err) {
+					Res.send({error: { msg: ERRORS.FOOTBALL.CANNOT_GET_PLAYERS, detail: err }}, 500)
+				}
+				Res.send(users);
+			});
 		} catch (e) {
 			Res.send({error: { msg: ERRORS.UNKNOWN_ERROR, detail: e }}, 500);
 		}
