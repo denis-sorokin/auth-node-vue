@@ -2,7 +2,7 @@ import api from '../../utils/interceptor'
 import encrypt from "../../utils/encrypt";
 
 const state = {
-	activeTable: '',
+	activeTable: 'playersList',
 	players: []
 };
 
@@ -20,8 +20,12 @@ const actions = {
 				}
 			})
 	},
-	SET_FOOTBALL_ACTIVE_TABLE ({ commit, dispatch }, table) {
-		dispatch('GET_FOOTBALL_USERS');
+	SET_ACTIVE_TABLE ({ commit, dispatch }, table) {
+		if (table === 'playersList') {
+			dispatch('GET_FOOTBALL_USERS');
+		} else {
+			console.log(table)
+		}
 		commit('SET_ACTIVE_TABLE', table)
 	},
 	FOOTBALL_REGISTER_IN_GAME ({ dispatch }, date) {

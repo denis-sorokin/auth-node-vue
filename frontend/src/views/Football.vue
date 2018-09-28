@@ -61,6 +61,9 @@
                 ]
             }
         },
+        created() {
+    		this.$store.dispatch('football/GET_FOOTBALL_USERS');
+        },
 	    computed: {
 		    ...mapGetters({
 			    activeTable: 'football/getActiveTable'
@@ -71,7 +74,7 @@
 			    console.log('secret')
             },
 	        setActiveTable (table) {
-    			this.$store.dispatch('football/SET_FOOTBALL_ACTIVE_TABLE', table)
+    			this.$store.dispatch('football/SET_ACTIVE_TABLE', table)
             }
         }
     }
