@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
 	},
 	games: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'game_player'
+		ref: 'game'
 	}],
 	permission: {
 		type: Number,
