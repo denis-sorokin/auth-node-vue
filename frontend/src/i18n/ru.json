@@ -11,6 +11,7 @@
             "wantReferee": "Стать рефери",
             "cancelGame": "Отменить заявку",
             "players": "Список игроков",
+            "gamesList": "Список игр",
             "writeTime": "Записатся"
         }
     },
@@ -18,6 +19,7 @@
         "wantGame": "Записатся на игру",
         "wantReferee": "Стать рефери",
         "cancelApplication": "Отмена заявки на игру",
+        "gamesList": "Список игр",
         "playersList": "Список игроков",
         "cancelApp": "Отмена записи",
         "selectDate": "Дата",

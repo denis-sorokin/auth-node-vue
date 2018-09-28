@@ -21,9 +21,10 @@
                     </nav>
                 </div>
                 <WantGame v-if="activeTable === 'wantGame'" />
-                <WantReferee v-if="activeTable === 'wantReferee'" />
-                <CancelApplication v-if="activeTable === 'cancelApplication'" />
-                <PlayersList v-if="activeTable === 'playersList'" />
+                <WantReferee v-else-if="activeTable === 'wantReferee'" />
+                <CancelApplication v-else-if="activeTable === 'cancelApplication'" />
+                <PlayersList v-else-if="activeTable === 'playersList'" />
+                <GamesList v-else-if="activeTable === 'gamesList'"/>
                 <img class="football__ball point" src="@/assets/football_ball.png" @click="showSecret" />
             </div>
         </div>
@@ -35,10 +36,11 @@
 	import WantReferee from '../components/feature/football/WantReferee'
 	import CancelApplication from '../components/feature/football/CancelApplication'
 	import PlayersList from '../components/feature/football/PlayersList'
+	import GamesList from '../components/feature/football/FootballGamesList'
 
     export default {
     	name: 'footballTournament',
-        components: { WantGame, WantReferee, CancelApplication, PlayersList },
+        components: { WantGame, WantReferee, CancelApplication, PlayersList, GamesList },
         data() {
     		return {
     			tables: [
@@ -50,19 +52,23 @@
 	                    title: this.$t('buttons.football.wantReferee'),
 	                    table: 'wantReferee'
 				    },
-                    {
-	                    title: this.$t('buttons.football.cancelGame'),
-	                    table: 'cancelApplication'
-                    },
+				    {
+					    title: this.$t('buttons.football.gamesList'),
+					    table: 'gamesList'
+				    },
                     {
 	                    title: this.$t('buttons.football.players'),
 	                    table: 'playersList'
-				    }
+				    },
+				    {
+					    title: this.$t('buttons.football.cancelGame'),
+					    table: 'cancelApplication'
+				    },
                 ]
             }
         },
         created() {
-    		this.$store.dispatch('football/GET_FOOTBALL_USERS');
+    		this.$store.dispatch('football/SET_ACTIVE_TABLE', 'gamesList');
         },
 	    computed: {
 		    ...mapGetters({

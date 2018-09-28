@@ -2,17 +2,19 @@ import api from '../../utils/interceptor'
 import encrypt from "../../utils/encrypt";
 
 const state = {
-	activeTable: 'playersList',
-	players: []
+	activeTable: 'gamesList',
+	players: [],
+	games: []
 };
 
 const getters = {
 	getActiveTable: state => state.activeTable,
-	getPlayers: state => state.players
+	getPlayers: state => state.players,
+	getGames: state => state.games,
 };
 
 const actions = {
-	GET_FOOTBALL_USERS ({ commit }) {
+	GET_USERS ({ commit }) {
 		api.get('football/players')
 			.then(res => {
 				if (res.status === 200) {
@@ -20,11 +22,19 @@ const actions = {
 				}
 			})
 	},
+	GET_GAMES ({ commit }) {
+		api.get('football/games')
+			.then(res => {
+				if (res.status === 200) {
+					commit('SAVE_GAMES', res.data)
+				}
+			})
+	},
 	SET_ACTIVE_TABLE ({ commit, dispatch }, table) {
 		if (table === 'playersList') {
-			dispatch('GET_FOOTBALL_USERS');
-		} else {
-			console.log(table)
+			dispatch('GET_USERS');
+		} else if (table === 'gamesList') {
+			dispatch('GET_GAMES');
 		}
 		commit('SET_ACTIVE_TABLE', table)
 	},
@@ -44,6 +54,9 @@ const mutations = {
 	},
 	SAVE_PLAYERS (state, data) {
 		state.players = data
+	},
+	SAVE_GAMES (state, data) {
+		state.games = data
 	}
 };
 

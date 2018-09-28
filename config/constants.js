@@ -43,7 +43,8 @@ module.exports = {
         },
 	    FOOTBALL: {
         	NOT_FOUND_PLAYER: 10,
-		    CANNOT_GET_PLAYERS: 11
+		    CANNOT_GET_PLAYERS: 11,
+		    CANNOT_GET_GAMES: 12
 	    },
         SESSION_EXPIRED: 5
     },
