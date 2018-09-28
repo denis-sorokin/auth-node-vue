@@ -50,6 +50,7 @@
   @extend .point;
   padding: 1em;
   border: 1px solid #000;
-  margin: 0.5em;
+  margin: 0 0.5em 0.5em;
   border-radius: 21px;
+  z-index: 5;
 }
