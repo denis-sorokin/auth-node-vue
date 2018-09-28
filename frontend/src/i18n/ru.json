@@ -22,7 +22,10 @@
         "cancelApp": "Отмена записи",
         "selectDate": "Дата",
         "timeAvailable": "Время свободно на {time}",
-        "timeDeny": "Время занято"
+        "timeDeny": "Время занято",
+        "player": {
+            "games": "Игры"
+        }
     },
     "auth": {
         "agree": "Я согласен с",

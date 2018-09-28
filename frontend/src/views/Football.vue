@@ -12,10 +12,12 @@
                 </div>
                 <div class="content">
                     <nav class="nav justify-content-around p-3">
-                        <v-button :title="$t('buttons.football.wantGame')" :action="wantGame" class="nav-item col-lg-5 my-1 btn-success"></v-button>
-                        <v-button :title="$t('buttons.football.wantReferee')" :action="wantReferee" class="nav-item col-lg-5 my-1 btn-success"></v-button>
-                        <v-button :title="$t('buttons.football.cancelGame')" :action="cancelGame" class="nav-item col-lg-5 my-1 btn-success"></v-button>
-                        <v-button :title="$t('buttons.football.players')" :action="showPlayers" class="nav-item col-lg-5 my-1 btn-success"></v-button>
+                        <v-button v-for="el in tables"
+                                  :title="el.title"
+                                  :propfn="el.table"
+                                  :action="setActiveTable"
+                                  class="nav-item col-lg-5 my-1 btn-success">
+                        </v-button>
                     </nav>
                 </div>
                 <WantGame v-if="activeTable === 'wantGame'" />
@@ -37,27 +39,40 @@
     export default {
     	name: 'footballTournament',
         components: { WantGame, WantReferee, CancelApplication, PlayersList },
+        data() {
+    		return {
+    			tables: [
+                    {
+                    	title: this.$t('buttons.football.wantGame'),
+	                    table: 'wantGame'
+                    },
+                    {
+	                    title: this.$t('buttons.football.wantReferee'),
+	                    table: 'wantReferee'
+				    },
+                    {
+	                    title: this.$t('buttons.football.cancelGame'),
+	                    table: 'cancelApplication'
+                    },
+                    {
+	                    title: this.$t('buttons.football.players'),
+	                    table: 'playersList'
+				    }
+                ]
+            }
+        },
 	    computed: {
 		    ...mapGetters({
-			    activeTable: 'getFootballActiveTable'
+			    activeTable: 'football/getActiveTable'
 		    }),
 	    },
         methods: {
     		showSecret() {
 			    console.log('secret')
             },
-	        wantGame () {
-    			this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'wantGame')
-            },
-	        wantReferee () {
-		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'wantReferee')
-	        },
-	        cancelGame () {
-		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'cancelApplication')
-	        },
-	        showPlayers () {
-		        this.$store.dispatch('SET_FOOTBALL_ACTIVE_TABLE', 'playersList')
-	        }
+	        setActiveTable (table) {
+    			this.$store.dispatch('football/SET_FOOTBALL_ACTIVE_TABLE', table)
+            }
         }
     }
 </script>

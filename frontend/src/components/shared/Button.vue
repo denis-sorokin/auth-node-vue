@@ -1,5 +1,5 @@
 <template>
-    <button class="v-button btn" @click="action">{{ title }}</button>
+    <button class="v-button btn" @click="action(propfn)">{{ title }}</button>
 </template>
 <script>
     export default {
@@ -10,6 +10,9 @@
             },
             action: {
     			type: Function
+            },
+            propfn: {
+    			type: String
             }
         }
     }

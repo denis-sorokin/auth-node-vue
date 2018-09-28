@@ -7,7 +7,8 @@ const state = {
 };
 
 const getters = {
-	getFootballActiveTable: state => state.activeTable
+	getActiveTable: state => state.activeTable,
+	getPlayers: state => state.players
 };
 
 const actions = {
@@ -43,6 +44,7 @@ const mutations = {
 };
 
 export default {
+	namespaced: true,
 	state,
 	actions,
 	mutations,

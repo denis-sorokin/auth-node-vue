@@ -37,9 +37,7 @@ class AuthController {
 
 		if (email && password) {
 			try {
-				console.log('WTF')
 				const user = await db.users.findOne({ email }).exec();
-				console.log(user)
 
 				if (user && user.email) {
 					const valid = await bcrypt.compare(password, user.password);

@@ -45,3 +45,11 @@
   font-family: 'Russo One', sans-serif;
   padding: 0.7rem 1.2rem;
 }
+
+.table-element {
+  @extend .point;
+  padding: 1em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  border-radius: 21px;
+}

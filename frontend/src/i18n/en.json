@@ -22,7 +22,10 @@
         "cancelApp": "Cancel application",
         "selectDate": "Date",
         "timeAvailable": "Time available on {time}",
-        "timeDeny": "Time is unavailable"
+        "timeDeny": "Time is unavailable",
+        "player": {
+            "games": "Games"
+        }
     },
     "auth": {
         "agree": "I agree to",
