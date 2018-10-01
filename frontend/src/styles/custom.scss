@@ -7,6 +7,12 @@
   }
 }
 
+.mh {
+  &__auto {
+    min-height: auto !important;
+  }
+}
+
 .ti-0 {
   text-indent: 0;
 }

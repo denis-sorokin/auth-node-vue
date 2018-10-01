@@ -12,10 +12,11 @@
                 </div>
                 <div class="content">
                     <nav class="nav justify-content-around p-3">
-                        <v-button v-for="el in tables"
+                        <v-button v-for="(el, index) in tables"
                                   :title="el.title"
                                   :propfn="el.table"
                                   :action="setActiveTable"
+                                  :key="index"
                                   class="nav-item col-lg-5 my-1 btn-success">
                         </v-button>
                     </nav>
@@ -35,7 +36,7 @@
 	import WantGame from '../components/feature/football/WantGame'
 	import WantReferee from '../components/feature/football/WantReferee'
 	import CancelApplication from '../components/feature/football/CancelApplication'
-	import PlayersList from '../components/feature/football/PlayersList'
+	import PlayersList from '../components/feature/football/FootballPlayersList'
 	import GamesList from '../components/feature/football/FootballGamesList'
 
     export default {

@@ -104,22 +104,25 @@
     }
     .table-element {
       &:hover {
-        background-color: mix($almost-black, $football-player-bg, 30%);
+        background-color: mix($almost-black, $football-element-bg, 30%);
       }
     }
   }
 
+  &__done {
+    background-color: $football-element-done-bg;
+  }
+
   @extend .ti-0;
-  $size: 3em;
-  background-color: $football-player-bg;
+  background-color: $football-element-bg;
   position: relative;
   font-weight: 700;
   color: $light-gray;
-  line-height: $size;
+  line-height: $football-table-element-size;
 
   img {
-    width: $size;
-    height: $size;
+    width: $football-table-element-size;
+    height: $football-table-element-size;
   }
 
   .row {
@@ -142,8 +145,8 @@
   }
 
   &__score {
-    width: $size;
-    height: $size;
+    width: $football-table-element-size;
+    height: $football-table-element-size;
     position: relative;
     font-size: 0.9em;
     line-height: 1;
@@ -170,19 +173,66 @@
   }
 
   &__score-number {
-    width: $size;
-    height: $size;
+    width: $football-table-element-size;
+    height: $football-table-element-size;
     border-radius: 50%;
     background-color: $lighter-gray;
     background: url('assets/blue_ball.svg');
     color: $darkest-gray;
     text-align: center;
-    line-height: $size;
+    line-height: $football-table-element-size;
   }
 
   &__additional {
     margin-top: -0.5em;
-    background-color: $lighter-gray;
+    background-color: $football-element-additional-bg;
+    border-radius: 0 0 21px 21px;
+  }
+}
+
+.football-games-list {
+  @extend .football-players-list;
+  .row {
+    min-height: auto;
+  }
+
+  &__header {
+    margin-bottom: 3em;
+
+    span {
+      font-weight: 800;
+      font-size: $font-size-base + 0.1;
+    }
+  }
+}
+
+.football-game {
+  @extend .ti-0;
+  background-color: $football-element-bg;
+  position: relative;
+  font-weight: 700;
+  color: $light-gray;
+  line-height: $football-table-element-size;
+
+  &__done {
+    background-color: $football-element-done-bg;
+  }
+
+  &__root {
+    overflow: hidden;
+    .row {
+      min-height: auto;
+    }
+    .table-element {
+      &:hover {
+        background-color: mix($almost-black, $football-element-bg, 30%);
+      }
+    }
+  }
+
+  &__additional {
+    margin-top: -0.5em;
+    background-color: $football-element-additional-bg;
     border-radius: 0 0 21px 21px;
   }
 }

@@ -90,7 +90,8 @@ const userBase = [
 	}
 ];
 const gameBase = {
-	planned_date: new Date()
+	planned_date: new Date(),
+	winners: FOOTBALL.TEAM[2]
 };
 const gamePlayersBase = (user) => {
 	return {

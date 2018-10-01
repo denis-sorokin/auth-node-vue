@@ -23,6 +23,8 @@
         "playersList": "Players list",
         "cancelApp": "Cancel application",
         "selectDate": "Date",
+        "plannedDate": "Planned date",
+        "winners": "Winners",
         "timeAvailable": "Time available on {time}",
         "timeDeny": "Time is unavailable",
         "player": {

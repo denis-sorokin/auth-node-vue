@@ -3,7 +3,7 @@ import store from '../store'
 import token from './tokenLocal'
 
 const api = axios.create({
-    baseURL: 'http://192.168.0.121:3000/api/'
+    baseURL: 'http://localhost:3000/api/'
 });
 
 const errorClearToken = [];

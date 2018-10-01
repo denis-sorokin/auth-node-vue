@@ -23,6 +23,8 @@
         "playersList": "Список игроков",
         "cancelApp": "Отмена записи",
         "selectDate": "Дата",
+        "plannedDate": "Запланированная дата",
+        "winners": "Победители",
         "timeAvailable": "Время свободно на {time}",
         "timeDeny": "Время занято",
         "player": {

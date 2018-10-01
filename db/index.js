@@ -8,8 +8,9 @@ const gamePlayers = require('./GamePlayers');
 const usersModel = mongoose.model('user', users);
 const gamesModel = mongoose.model('game', games);
 
-const seeds = require('./seeds');
+// const seeds = require('./seeds');
 
+// gamePlayers hook
 gamePlayers.post('updateOne', async function() {
 	try {
 		const data = await this.getUpdate();
@@ -61,6 +62,6 @@ const models = {
 	gamePlayers: gamePlayersModel
 };
 
-seeds(models);
+// seeds(models);
 
 module.exports = models;
