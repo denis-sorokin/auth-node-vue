@@ -52,7 +52,7 @@
     },
      "serverMsg": {
         "errors": {
-            "0": "Unknown error",
+            "0": "Unknown error. Maybe server not response.",
             "1": "Not found",
             "2": "User not found",
             "3": "Login or password incorrect",
