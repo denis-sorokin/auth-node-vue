@@ -64,10 +64,10 @@
 
 .football__ball {
   position: absolute;
-  bottom: 3vh;
-  left: 17vh;
-  height: 5vw;
-  width: 5vw;
+  bottom: $football_ball_position_bottom;
+  left: $football_ball_position_left;
+  height: $football_ball_size;
+  width: $football_ball_size;
   //background: url('./assets/football_ball.png');
   //background-size: cover;
   z-index: 5;

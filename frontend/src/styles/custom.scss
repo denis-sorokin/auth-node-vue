@@ -1,3 +1,5 @@
+@import "constants";
+
 .wp {
   &-300 {
     max-width: 300px;
@@ -59,4 +61,35 @@
   margin: 0 0.5em 0.5em;
   border-radius: 21px;
   z-index: 5;
+}
+
+.secretBall-animate {
+  animation: secretBall 1.5s linear;
+}
+
+@keyframes secretBall {
+  0% {
+    bottom: $football_ball_position_animate_bottom;
+  }
+  7% {
+    width: $football_ball_animate_size;
+    height: $football_ball_animate_size;
+  }
+  15% {
+    bottom: $football_ball_position_bottom;
+  }
+  35% {
+    width: $football_ball_size;
+    height: $football_ball_size;
+    transform: rotateZ(0deg);
+    left: $football_ball_position_left;
+  }
+  50% {
+    left: $football_ball_position_animate_left;
+    transform: rotateZ(360deg);
+  }
+  100% {
+    left: $football_ball_position_left;
+    transform: rotateZ(0deg);
+  }
 }

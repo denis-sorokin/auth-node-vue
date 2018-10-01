@@ -26,7 +26,7 @@
                 <CancelApplication v-else-if="activeTable === 'cancelApplication'" />
                 <PlayersList v-else-if="activeTable === 'playersList'" />
                 <GamesList v-else-if="activeTable === 'gamesList'"/>
-                <img class="football__ball point" src="@/assets/football_ball.png" @click="showSecret" />
+                <img class="football__ball point" :class="displaySecret? 'secretBall-animate':''" src="@/assets/football_ball.png" @click="showSecret" />
             </div>
         </div>
     </div>
@@ -44,6 +44,7 @@
         components: { WantGame, WantReferee, CancelApplication, PlayersList, GamesList },
         data() {
     		return {
+			    displaySecret: false,
     			tables: [
                     {
                     	title: this.$t('buttons.football.wantGame'),
@@ -78,6 +79,10 @@
 	    },
         methods: {
     		showSecret() {
+    			this.displaySecret = true;
+    			setTimeout(() => {
+    				this.displaySecret = false;
+                }, 1500);
 			    console.log('secret')
             },
 	        setActiveTable (table) {
