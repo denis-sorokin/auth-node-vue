@@ -244,11 +244,27 @@
   animation: showDetail 0.3s linear reverse;
 }
 
+.selectTable-animate {
+  animation: selectTable 0.7s linear;
+}
+
 @keyframes showDetail {
   0% {
     transform: translate(0, -100%)
   }
   100% {
     transform: translate(0)
+  }
+}
+
+@keyframes selectTable {
+  0% {
+    transform: rotateY(360deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
   }
 }
