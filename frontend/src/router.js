@@ -4,6 +4,22 @@ import Home from './views/Home.vue'
 
 Vue.use(Router);
 
+// router.beforeEach((to, from, next) => {
+// 	if(to.path != '/football') {
+// 		if(checkToken()) {
+// 			logger('There is a token, resume. (' + to.path + ')');
+// 			next();
+// 		} else {
+// 			logger('There is no token, redirect to login. (' + to.path + ')');
+// 			next('login');
+// 		}
+// 	} else {
+// 		logger('You\'re on the login page');
+// 		next(); // This is where it should have been
+// 	}
+// 	// next(); - This is in the wrong place
+// });
+
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,

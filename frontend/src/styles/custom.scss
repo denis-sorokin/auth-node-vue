@@ -85,10 +85,16 @@
     left: $football_ball_position_left;
   }
   50% {
+    bottom: $football_ball_position_bottom + 7;
+    width: $football_ball_animate_size;
+    height: $football_ball_animate_size;
     left: $football_ball_position_animate_left;
     transform: rotateZ(360deg);
   }
   100% {
+    width: $football_ball_size;
+    height: $football_ball_size;
+    bottom: $football_ball_position_bottom;
     left: $football_ball_position_left;
     transform: rotateZ(0deg);
   }
