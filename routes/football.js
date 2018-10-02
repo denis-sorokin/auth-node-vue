@@ -1,22 +1,19 @@
 const express = require('express');
 const router = express.Router();
+
 const AuthMiddleware = require('../app/middleware/auth');
 const FootballController = require('../app/controller/football');
 
 /* GET players list. */
 router.get('/players',
-	async function(Req, Res) {
-		// AuthMiddleware.checkToken(Req, Res, next),
-		FootballController.getUsers(Req, Res);
-	}
+	AuthMiddleware.checkToken.bind(AuthMiddleware),
+	FootballController.getPlayers.bind(FootballController)
 );
 
 /* GET games list. */
 router.get('/games',
-	async function(Req, Res) {
-		// AuthMiddleware.checkToken(Req, Res, next),
-		FootballController.getGames(Req, Res);
-	}
+	AuthMiddleware.checkToken.bind(AuthMiddleware),
+	FootballController.getGames.bind(FootballController)
 );
 
 module.exports = router;

@@ -6,7 +6,7 @@ const api = axios.create({
     baseURL: 'http://localhost:3000/api/'
 });
 
-const errorClearToken = [];
+const errorClearToken = [403];
 
 api.defaults.headers.common['Content-Type'] = 'text/plain';
 api.interceptors.request.use(function (config) {

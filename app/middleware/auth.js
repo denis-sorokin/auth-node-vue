@@ -1,6 +1,6 @@
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const db = require('../../db');
+const models = require('../../db');
 const { ERRORS } = require('../../config/constants');
 
 
@@ -16,12 +16,12 @@ class AuthMiddleware {
             Res.send({ error: { msg: ERRORS.AUTH.UNAUTHORIZED } }, 400);
         } else {
             const info = jwt.decode(Req.headers.authorization, process.env.SECRET);
-            const user = await db.users.findOne({ where: { email: info.user }});
+	        const user = await models.users.findOne({ email: info.user });
 
-            if (moment(info.expires).utc().format() > moment().utc().format() && user) {
+            if ((moment(info.expires).utc().format() > moment().utc().format()) && user) {
                 next();
             } else {
-                Res.send({ error: { msg: ERRORS.SESSION_EXPIRED } }, 403);
+	            Res.send({ error: { msg: ERRORS.SESSION_EXPIRED } }, 403);
             }
         }
     }

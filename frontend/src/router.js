@@ -2,25 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
+import auth from './utils/tokenLocal'
+
 Vue.use(Router);
 
-// router.beforeEach((to, from, next) => {
-// 	if(to.path != '/football') {
-// 		if(checkToken()) {
-// 			logger('There is a token, resume. (' + to.path + ')');
-// 			next();
-// 		} else {
-// 			logger('There is no token, redirect to login. (' + to.path + ')');
-// 			next('login');
-// 		}
-// 	} else {
-// 		logger('You\'re on the login page');
-// 		next(); // This is where it should have been
-// 	}
-// 	// next(); - This is in the wrong place
-// });
-
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -60,4 +46,19 @@ export default new Router({
             redirect: '/'
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+	if(to.path === '/football') {
+		const token = auth.getToken();
+		if(token) {
+			next();
+		} else {
+			next('login');
+		}
+	} else {
+		next();
+	}
+});
+
+export default router;
