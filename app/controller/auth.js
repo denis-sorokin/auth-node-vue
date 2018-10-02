@@ -54,8 +54,7 @@ class AuthController {
 							user: {
 								username: user.username
 							},
-							token,
-							// exp: this.payload.expires
+							token
 						};
 
 						Res.send(response, 200);

@@ -25,31 +25,38 @@
                 sidebar: 'getSidebarStatus'
 			}),
 			defaultRoutes() {
-				return this.user && this.user.username ? [
-					{
-						name: 'home',
-						redirectTo: 'home'
-					},
-					{
-						name: 'about',
-						redirectTo: 'about'
-					},
-					{
-						name: 'football',
-						redirectTo: 'football'
-					},
-					{
-						name: 'logout',
-						redirectTo: 'logout'
-					}
-				] : [
+				const routes = this.user && this.user.username ? () => {
+                        const permission = 74;
+                        const binary = ((permission >>> 0).toString(2));
+                        const countIter = (binary[0] == 1? '0' + binary : binary).length % 3;
+                        for (let i = 0; i < countIter; i++) {
+                        	console.log((i+1) * 3)
+                        }
+                    }
+					// {
+					// 	name: 'home',
+					// 	redirectTo: 'home'
+					// },
+					// {
+					// 	name: 'about',
+					// 	redirectTo: 'about'
+					// },
+					// {
+					// 	name: 'football',
+					// 	redirectTo: 'football'
+					// },
+					// {
+					// 	name: 'logout',
+					// 	redirectTo: 'logout'
+					// }
+				: [
 					{
 						name: 'login',
 						redirectTo: 'login'
 					},
 					{
 						name: 'signUp',
-						redirectTo: 'register'
+						redirectTo: 'signUp'
 					}
 				]
 			}

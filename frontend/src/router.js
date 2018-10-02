@@ -22,7 +22,7 @@ const router = new Router({
         },
         {
             path: '/sign-up',
-            name: 'register',
+            name: 'signUp',
             component: () => import('./views/Register.vue')
         },
         {

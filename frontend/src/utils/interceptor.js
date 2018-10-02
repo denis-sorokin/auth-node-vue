@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '../store'
+import router from '../router'
 import token from './tokenLocal'
 
 const api = axios.create({
@@ -30,7 +31,7 @@ api.interceptors.response.use(function (response) {
                 setTimeout(() => window.location = '/login', 3000)
             })
         } else if (error.response.status === 403) {
-	        setTimeout(() => window.location = '/login', 3000)
+	        setTimeout(() => router.push('/'), 3000)
         }
     } else {
         store.dispatch('SEND_ERROR', { msg: 0 });
