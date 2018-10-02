@@ -1,6 +1,6 @@
 export default {
 	check(permission, crud, model) {
-		let binary = ((permission >>> 0).toString(2));
+		let binary = permission.toString(2);
 		binary = binary[0] == 1? '0' + binary : binary;
 		return Array.from(Array(Math.floor(binary.length / 4)).keys())
 		.map(i => {

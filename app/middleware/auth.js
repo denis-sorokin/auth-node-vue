@@ -30,7 +30,6 @@ class AuthMiddleware {
 
     havePermission(permission) {
     	return async (Req, Res, next) => {
-	        console.log(permission);
 	        try {
 		        const info = jwt.decode(Req.headers.authorization, process.env.SECRET);
 		        const user = await models.users.findOne({ email: info.user });
