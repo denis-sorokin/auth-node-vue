@@ -25,7 +25,13 @@ module.exports = {
 	        CAN_READ: 1 << 2,
 	        CAN_UPDATE: 1 << 1,
 	        CAN_DELETE: 1 << 0
-        }
+        },
+	    FOOTBALL: {
+		    CAN_CREATE: 1 << 4,
+		    CAN_READ: 1 << 5,
+		    CAN_UPDATE: 1 << 6,
+		    CAN_DELETE: 1 << 7
+	    }
     },
     ERRORS: {
         UNKNOWN_ERROR: 0,
@@ -46,7 +52,8 @@ module.exports = {
 		    CANNOT_GET_PLAYERS: 11,
 		    CANNOT_GET_GAMES: 12
 	    },
-        SESSION_EXPIRED: 5
+        SESSION_EXPIRED: 5,
+	    NOT_HAVE_PERMISSION: 13
     },
     NOTIFICATION: {
         USERS: {

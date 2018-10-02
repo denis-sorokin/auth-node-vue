@@ -29,7 +29,7 @@
 			'error': function (val) {
 				if (val != null) {
 					const detail = val.detail;
-					const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`, 'serverMsg.errors.0') : null;
+					const msg = typeof val.msg === 'number' ? this.$t(`serverMsg.errors.${val.msg}`,  this.$t('serverMsg.errors.0')) : null;
 					this.showToast(msg, {
 						icon: 'fa-exclamation-triangle',
 						position: 'top-right',

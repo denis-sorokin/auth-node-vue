@@ -6,7 +6,7 @@ const api = axios.create({
     baseURL: 'http://localhost:3000/api/'
 });
 
-const errorClearToken = [403];
+const errorClearToken = [];
 
 api.defaults.headers.common['Content-Type'] = 'text/plain';
 api.interceptors.request.use(function (config) {
@@ -22,10 +22,16 @@ api.interceptors.response.use(function (response) {
     return response
 }, (error) => {
     if (error.response) {
-        if (errorClearToken.includes(error.response.status)) {
-            token.removeToken()
+	    store.dispatch('SEND_ERROR', error.response.data.error);
+
+	    if (errorClearToken.includes(error.response.status)) {
+	        store.dispatch('AUTH_LOGOUT')
+            .then(() => {
+                setTimeout(() => window.location = '/login', 3000)
+            })
+        } else if (error.response.status === 403) {
+	        setTimeout(() => window.location = '/login', 3000)
         }
-        store.dispatch('SEND_ERROR', error.response.data.error);
     } else {
         store.dispatch('SEND_ERROR', { msg: 0 });
     }

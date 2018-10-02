@@ -60,7 +60,12 @@
             "5": "Session expired",
             "6": "Unauthorized",
             "7": "Cannot create user",
-            "8": "Wrong password!"
+            "8": "Wrong password!",
+            "9": "Cannot get user",
+            "10": "Not found football player",
+            "11": "Cannot get football players",
+            "12": "Cannot get football games",
+            "13": "You not have permission."
         },
          "notifications": {
              "0": "Success!"

@@ -1,6 +1,8 @@
+import store from '../store'
+
 export default {
     getToken () {
-        return localStorage.getItem('authToken')
+        return store.state.auth.token === localStorage.getItem('authToken')? store.state.auth.token : null;
     },
     setToken (token) {
         localStorage.setItem('authToken', token)
