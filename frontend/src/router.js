@@ -52,11 +52,6 @@ router.beforeEach((to, from, next) => {
 	if(to.path === '/football') {
 		const token = auth.getToken();
 		if(token) {
-			if (true) {
-				next()
-			} else {
-				next('login');
-			}
 			next();
 		} else {
 			next('login');

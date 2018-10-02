@@ -52,7 +52,8 @@ class AuthController {
 
 						const response = {
 							user: {
-								username: user.username
+								username: user.username,
+								permission: user.permission
 							},
 							token
 						};

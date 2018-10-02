@@ -6,7 +6,7 @@
         <transition name="toggleSidebar">
             <div v-if="sidebar" class="profile-menu" id="menuProfile">
                 <h1 class="m-3" v-if="user && user.username">{{ user.username }}</h1>
-                <router-link v-for="(option, id) in defaultRoutes" :to="{name: option.redirectTo}"
+                <router-link v-for="(option, id) in defaultRoutes()" :to="{name: option.redirectTo}"
                              :key="id" class="profile-menu__item">
                     {{ $t(`nav.${option.name}`) }}
                 </router-link>
@@ -16,6 +16,7 @@
 </template>
 <script>
 	import { mapGetters } from 'vuex'
+    import authGate from '../../utils/checkPermissions'
 
 	export default {
 		name: 'ProfileDropdown',
@@ -25,31 +26,31 @@
                 sidebar: 'getSidebarStatus'
 			}),
 			defaultRoutes() {
-				const routes = this.user && this.user.username ? () => {
-                        const permission = 74;
-                        const binary = ((permission >>> 0).toString(2));
-                        const countIter = (binary[0] == 1? '0' + binary : binary).length % 3;
-                        for (let i = 0; i < countIter; i++) {
-                        	console.log((i+1) * 3)
-                        }
-                    }
-					// {
-					// 	name: 'home',
-					// 	redirectTo: 'home'
-					// },
-					// {
-					// 	name: 'about',
-					// 	redirectTo: 'about'
-					// },
-					// {
-					// 	name: 'football',
-					// 	redirectTo: 'football'
-					// },
-					// {
-					// 	name: 'logout',
-					// 	redirectTo: 'logout'
-					// }
-				: [
+				return this.user && this.user.username ? () => {
+                    const footballResolution = authGate.check(this.user.permission, 3, 1) == 1? true : false;
+
+                    const defaultRoutes = [{
+                        name: 'home',
+                        redirectTo: 'home'
+                    },
+                    {
+                        name: 'about',
+                        redirectTo: 'about'
+                    }];
+
+                    if (footballResolution) defaultRoutes.push({
+	                    name: 'football',
+	                    redirectTo: 'football'
+                    });
+
+                    defaultRoutes.push({
+	                    name: 'logout',
+	                    redirectTo: 'logout'
+                    });
+
+                    return defaultRoutes;
+                }
+				: () => { return [
 					{
 						name: 'login',
 						redirectTo: 'login'
@@ -58,7 +59,7 @@
 						name: 'signUp',
 						redirectTo: 'signUp'
 					}
-				]
+				]}
 			}
 		},
         methods: {

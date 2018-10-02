@@ -26,12 +26,9 @@ api.interceptors.response.use(function (response) {
 	    store.dispatch('SEND_ERROR', error.response.data.error);
 
 	    if (errorClearToken.includes(error.response.status)) {
-	        store.dispatch('AUTH_LOGOUT')
-            .then(() => {
-                setTimeout(() => window.location = '/login', 3000)
-            })
+		    router.push('logout')
         } else if (error.response.status === 403) {
-	        setTimeout(() => router.push('/'), 3000)
+	        router.push('/')
         }
     } else {
         store.dispatch('SEND_ERROR', { msg: 0 });
