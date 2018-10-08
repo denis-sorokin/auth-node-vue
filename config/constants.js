@@ -3,7 +3,7 @@ module.exports = {
 		admin: (permissions) => {
 			return _.reduce(permissions, (result, value) => {
 				_.each(value, e => {
-					result =+ e
+					result += e
 				});
 				return result
 			}, 0);
