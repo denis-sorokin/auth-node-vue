@@ -13,10 +13,6 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 app.use(function (req, res, next)
 {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,8 +28,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.session({secret: process.env.SECRET}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use(require('morgan')('combined'));
 
@@ -44,7 +40,7 @@ app.use('/api/users', usersRouter);
 const port = process.env.PORT || 3000;
 
 db
-	.sequelize
+	.sequelize // init database connection
 	.sync()
 	.then(() => {
 			db.User.find({ where: {username: 'admin'} }).then(user => {

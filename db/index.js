@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const _ = require('lodash');
 let db = {};
 const Sequelize = require('sequelize');
 
@@ -13,6 +12,9 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 		}
 });
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
 // read dir and init models
 fs
 	.readdirSync(__dirname)
@@ -24,7 +26,4 @@ fs
 		db[model.name] = model
 	});
 
-module.exports = _.assign({
-	sequelize,
-	Sequelize
-}, db);
+module.exports = db;

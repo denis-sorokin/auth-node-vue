@@ -20,8 +20,10 @@ module.exports = function (sequelize, DataTypes) {
 			validate: { notEmpty: { msg: ERRORS.AUTH.REQUIRED_EMAIL } }
 		},
 		permissions: {
-			type: Number,
-			default: ROLE.reader(PERMISSIONS)
+			type: DataTypes.NUMBER,
+			defaultValue: function() {
+				return ROLE.reader(PERMISSIONS)
+			}
 		}
 	}, {
 		classMethods: {
@@ -36,8 +38,6 @@ module.exports = function (sequelize, DataTypes) {
 				})
 			}
 		}
-	}, {
-		dialect: 'mysql'
 	});
 
 	User.hook('beforeCreate', (user) => {
