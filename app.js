@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport');
+const db = require('./db');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -29,6 +31,9 @@ app.use(bodyParser.text({type: '*/*'}));
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.session({secret: process.env.SECRET}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('morgan')('combined'));
 
@@ -37,8 +42,23 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 
 const port = process.env.PORT || 3000;
-app.listen(port, function () {
-    console.log(`=======\nApp running on ${port}\nhttp://localhost:${port}\n=======`);
-});
 
-module.exports = app;
+db
+	.sequelize
+	.sync()
+	.then(() => {
+			db.User.find({ where: {username: 'admin'} }).then(user => {
+				if (!user) {
+					db.User.build({username: 'admin', password: 'admin'}).save();
+				}
+			})
+			.catch(err => {
+				console.error(err);
+			});
+			app.listen(port, function () {
+				console.log(`=======\nApp running on ${port}\nhttp://localhost:${port}\n=======`);
+			});
+	})
+	.catch (err => {
+		console.error(err)
+	});
