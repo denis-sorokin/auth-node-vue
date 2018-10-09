@@ -3,9 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const passport = require('passport');
+// const logger = require('morgan');
 const db = require('./db');
+
+const DecodeMiddleware = require('./app/middleware/decode');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -22,16 +24,23 @@ app.use(function (req, res, next)
     next();
 });
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.text({type: '*/*'}));
+
+// decode requests from AES
+app.use(function (Req, Res, next) {
+	Req.body = DecodeMiddleware(Req, next);
+});
+
 app.use(express.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.session({secret: process.env.SECRET}));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passport');
 
-app.use(require('morgan')('combined'));
+// app.use(require('morgan')('combined'));
 
 app.use('/api', indexRouter);
 app.use('/api/auth', authRouter);
@@ -45,7 +54,7 @@ db
 	.then(() => {
 			db.User.find({ where: {username: 'admin'} }).then(user => {
 				if (!user) {
-					db.User.build({username: 'admin', password: 'admin'}).save();
+					db.User.build({username: 'admin', password: 'admin', email: "email@gmail.com"}).save();
 				}
 			})
 			.catch(err => {

@@ -8,19 +8,28 @@ module.exports = function (sequelize, DataTypes) {
 		username: {
 			type: DataTypes.STRING,
 			unique: true,
-			validate: { notEmpty: { msg: ERRORS.AUTH.REQUIRED_USERNAME } }
+			allowNull: false,
+			validate: {
+				notEmpty: { msg: ERRORS.AUTH.REQUIRED_USERNAME }
+			}
 		},
 		password: {
 			type: DataTypes.STRING,
-			validate: { notEmpty: { msg: ERRORS.AUTH.REQUIRED_PASSWORD } }
+			allowNull: false,
+			validate: {
+				notEmpty: { msg: ERRORS.AUTH.REQUIRED_PASSWORD }
+			}
 		},
 		email: {
 			type: DataTypes.STRING,
 			unique: true,
-			validate: { notEmpty: { msg: ERRORS.AUTH.REQUIRED_EMAIL } }
+			allowNull: false,
+			validate: {
+				notEmpty: { msg: ERRORS.AUTH.REQUIRED_EMAIL }
+			}
 		},
 		permissions: {
-			type: DataTypes.NUMBER,
+			type: DataTypes.INTEGER,
 			defaultValue: function() {
 				return ROLE.reader(PERMISSIONS)
 			}

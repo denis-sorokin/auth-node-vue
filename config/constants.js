@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = {
 	ROLE: {
 		admin: (permissions) => {
@@ -38,7 +40,9 @@ module.exports = {
 			WRONG_PASSWORD: 8,
 			REQUIRED_USERNAME: 14,
 			REQUIRED_PASSWORD: 15,
-			REQUIRED_EMAIL: 16
+			REQUIRED_EMAIL: 16,
+			INCORRECT_EMAIL: 17,
+			INCORRECT_PASSWORD: 18
 		},
 		USERS: {
 			NOT_FOUND: 4,

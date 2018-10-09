@@ -5,7 +5,7 @@ const UserController = require('../app/controller/user');
 
 /* USERS */
 router.post('/login',
-    async function(Req, Res) {
+    function(Req, Res) {
 	    UserController.createToken(Req, Res);
     }
 );

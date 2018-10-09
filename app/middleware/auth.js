@@ -1,14 +1,27 @@
-const jwt = require('jwt-simple');
 const moment = require('moment');
-const db = require('../../db/index');
+const db = require('../../db');
 const { ERRORS } = require('../../config/constants');
-
 
 class AuthMiddleware {
     constructor() {
         this.payload = {
             expires: moment().utc().add({ hours: 3 }).format()
         };
+    }
+
+    passAuth(Req, Res, next) {
+    }
+
+    isAuth(Req, Res, next) {
+        if(Req.isAuthenticated) {
+            next();
+        } else {
+            Res.send(401)
+        }
+    }
+
+    destroySession(Req, Res, next) {
+        //
     }
 
     async checkToken(Req, Res, next) {
