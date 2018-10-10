@@ -25,16 +25,17 @@ passport.use(new LocalStrategy({
 		passwordField: 'password'
 	},
 	(email, password, done) => {
-		db.User.findOne({where: { email: email }}).then((err, user) => {
-			if (err) {
-				return done(err);
-			}
+		db.User.findOne({ where: { email: email } })
+		.then((user) => {
 			if (!user) {
-				return done(null, false, {message: ERROR.AUTH.INCORRECT_EMAIL});
+				return done(null, false, { message: ERROR.AUTH.INCORRECT_EMAIL });
 			}
 			if (!user.validPassword(password)) {
-				return done(null, false, {message: ERROR.AUTH.INCORRECT_PASSWORD});
+				return done(null, false, { message: ERROR.AUTH.INCORRECT_PASSWORD });
 			}
 			return done(null, user);
+		})
+		.catch(err => {
+			return done(err);
 		});
 }));

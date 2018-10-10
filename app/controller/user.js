@@ -15,16 +15,16 @@ class UserController {
 	}
 
     signUp(Req, Res) {
-        const { username, password, email } = encrypt.getClientPassword(Req.body);
+        const { username, password, email } = Req.body;
 
         bcrypt.hash(password, _.toNumber(process.env.BCRYPT_ROUNDS), async function(err, hash) {
             if (hash) {
                 try {
-                    await db.users.create({ username, email, password: hash });
+                    await db.User.create({ username, email, password: hash });
                     Res.send({ msg: NOTIFICATION.USERS.USER_CREATED })
                 }
-                catch (e) {
-                    let messages = e.errors.reduce((ac, val) => {
+                catch (err) {
+                    let messages = err.errors.reduce((ac, val) => {
                         return ac.concat(val.message);
                     }, []);
 
@@ -38,59 +38,40 @@ class UserController {
         });
     }
 
+	// login
 	async createToken(Req, Res) {
+		// params from @/passport.js
 		passport.authenticate('local', (err, user, info) => {
 			return err
-				? Res.send({error: info, detail: err}, 400)
+				? Res.send({ error: { msg: info, detail: err } }, 400)
 				: user
-					? req.logIn((user, err) => {
-						return err
-							? Res.send({error: info, detail: err}, 400)
-							: Res.send(user);
+					? Req.logIn(user, err => {
+						if (err) {
+							Res.send({ error: { msg: info, detail: err } }, 400)
+						} else {
+							const token = jwt.encode({
+									...this.payload,
+									...{ user: user.email }
+								},
+								process.env.SECRET
+							);
+
+							const response = {
+								user: {
+									// email is secret
+									// email: user.email,
+									username: user.username
+								},
+								token,
+								exp: this.payload.expires
+							};
+
+							Res.send(response, 200);
+						}
 					})
-					: Res.send('not logIn', 400)
+					: Res.send({ error: { msg: info, detail: err } }, 400)
 		})(Req, Res);
 	}
-	// 	const { email, password } = encrypt.getClientPassword(Req.body);
-	//
-	// 	if (email && password) {
-	// 		try {
-	// 			const userBase = await db.users.findOne({ where: { email } });
-	//
-	// 			if (userBase && userBase.email) {
-	// 				const valid = await bcrypt.compare(password, userBase.password);
-	//
-	// 				if(valid) {
-	// 					const token = jwt.encode({
-	// 						...this.payload,
-	// 						...{ user: userBase.email }
-	// 						},
-	// 						process.env.SECRET
-	// 					);
-	//
-	// 					const response = {
-	// 						user: {
-	// 							email: userBase.email,
-	// 							username: userBase.username
-	// 						},
-	// 						token,
-	// 						exp: this.payload.expires
-	// 					};
-	//
-	// 					Res.send(response, 200);
-	// 				} else {
-	// 					Res.send({error: { msg: ERRORS.AUTH.WRONG_PASSWORD }}, 500);
-	// 				}
-	// 			} else {
-	// 				Res.send({error: { msg: ERRORS.AUTH.NOT_FOUND}}, 400);
-	// 			}
-	// 		} catch (e) {
-	// 			Res.send({error: { msg: ERRORS.UNKNOWN_ERROR, detail: e }}, 500);
-	// 		}
-	// 	} else {
-	// 		Res.send({ error: { msg: ERRORS.AUTH.INVALID } }, 400);
-	// 	}
-	// };
 }
 
 module.exports = new UserController();

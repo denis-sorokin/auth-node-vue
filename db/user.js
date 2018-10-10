@@ -34,20 +34,11 @@ module.exports = function (sequelize, DataTypes) {
 				return ROLE.reader(PERMISSIONS)
 			}
 		}
-	}, {
-		classMethods: {
-			validPassword: function(password, passwd, done, user) {
-				bcrypt.compare(password, passwd, (err, isMatch) => {
-					if (err) console.error(err);
-					if (isMatch) {
-						return done(null, user)
-					} else {
-						return done(null, false)
-					}
-				})
-			}
-		}
 	});
+
+	User.prototype.validPassword = function(password) {
+		return bcrypt.compareSync(password, this.password);
+	};
 
 	User.hook('beforeCreate', (user) => {
 		const salt = bcrypt.genSaltSync(_.toNumber(process.env.BCRYPT_ROUNDS));

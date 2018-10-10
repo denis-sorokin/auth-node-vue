@@ -1,4 +1,5 @@
 const moment = require('moment');
+const jwt = require('jwt-simple');
 const db = require('../../db');
 const { ERRORS } = require('../../config/constants');
 
@@ -30,7 +31,7 @@ class AuthMiddleware {
             return false;
         } else {
             const info = jwt.decode(Req.headers.authorization, process.env.SECRET);
-            const user = await db.users.findOne({ where: { email: info.user }});
+            const user = await db.User.findOne({ where: { email: info.user }});
 
             if (moment(info.expires).utc().format() > moment().utc().format() && user) {
                 next();
